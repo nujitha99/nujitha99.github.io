@@ -3,917 +3,663 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nujitha W. — Engineer & Researcher</title>
+  <title>Nick (Nujitha W.) — Software Engineer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Epilogue:ital,wght@0,300;0,400;0,500;1,300&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #0a0c0f;
-      --bg2: #0f1217;
-      --surface: #141820;
-      --border: #1e2530;
-      --accent: #00d4aa;
-      --accent2: #7b8cff;
-      --text: #e8eaf0;
-      --muted: #6b7385;
-      --label: #3a4254;
+      --bg: #09090b;
+      --bg2: #0d0e11;
+      --surface: #13151a;
+      --surface2: #181b22;
+      --border: #1f2330;
+      --border2: #262d3d;
+      --accent: #4fffb0;
+      --accent2: #6e7bff;
+      --warm: #ffb84d;
+      --text: #e6e8f0;
+      --muted: #636880;
+      --subtle: #2a2f3f;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     html { scroll-behavior: smooth; }
 
     body {
       background: var(--bg);
       color: var(--text);
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Epilogue', sans-serif;
       font-size: 16px;
       line-height: 1.7;
       overflow-x: hidden;
     }
 
-    /* ── NOISE OVERLAY ── */
-    body::before {
+    body::after {
       content: '';
-      position: fixed;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
-      opacity: 0.025;
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      opacity: 0.02;
       pointer-events: none;
-      z-index: 0;
+      z-index: 999;
     }
 
-    /* ── NAV ── */
     nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1.2rem 4rem;
-      background: rgba(10,12,15,0.85);
-      backdrop-filter: blur(12px);
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.1rem 3.5rem;
+      background: rgba(9,9,11,0.8);
+      backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--border);
     }
 
     .nav-logo {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.8rem;
-      color: var(--accent);
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      text-decoration: none;
+      font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1rem;
+      color: var(--text); text-decoration: none; letter-spacing: -0.02em;
     }
+    .nav-logo span { color: var(--accent); }
 
-    .nav-links {
-      display: flex;
-      gap: 2.5rem;
-      list-style: none;
-    }
-
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
     .nav-links a {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.75rem;
-      color: var(--muted);
-      text-decoration: none;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      transition: color 0.2s;
+      font-family: 'DM Mono', monospace; font-size: 0.72rem;
+      color: var(--muted); text-decoration: none;
+      letter-spacing: 0.1em; text-transform: uppercase; transition: color 0.2s;
     }
-
     .nav-links a:hover { color: var(--accent); }
 
-    /* ── HERO ── */
+    /* HERO */
     .hero {
       min-height: 100vh;
+      padding: 9rem 3.5rem 5rem;
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr 420px;
+      gap: 5rem;
       align-items: center;
-      padding: 8rem 4rem 4rem;
-      gap: 4rem;
       position: relative;
     }
 
-    .hero-grid-bg {
-      position: absolute;
-      inset: 0;
-      background-image:
-        linear-gradient(var(--border) 1px, transparent 1px),
-        linear-gradient(90deg, var(--border) 1px, transparent 1px);
-      background-size: 60px 60px;
-      opacity: 0.3;
-      mask-image: radial-gradient(ellipse 70% 70% at 70% 50%, black 30%, transparent 80%);
-    }
-
-    .hero-left { position: relative; z-index: 1; }
-
-    .hero-tag {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.72rem;
-      color: var(--accent);
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      margin-bottom: 1.5rem;
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-
-    .hero-tag::before {
+    .hero::before {
       content: '';
-      display: block;
-      width: 32px;
-      height: 1px;
-      background: var(--accent);
+      position: absolute; top: 20%; left: 40%;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(78,255,176,0.04) 0%, transparent 70%);
+      pointer-events: none;
     }
+
+    .hero-eyebrow {
+      display: flex; align-items: center; gap: 0.8rem;
+      font-family: 'DM Mono', monospace; font-size: 0.72rem;
+      color: var(--accent); letter-spacing: 0.18em; text-transform: uppercase;
+      margin-bottom: 1.8rem;
+    }
+    .hero-eyebrow::before { content: ''; display: block; width: 24px; height: 1px; background: var(--accent); }
 
     h1 {
-      font-family: 'DM Serif Display', serif;
-      font-size: clamp(3rem, 6vw, 5.5rem);
-      line-height: 1.05;
-      letter-spacing: -0.02em;
-      margin-bottom: 1.5rem;
+      font-family: 'Syne', sans-serif; font-weight: 800;
+      font-size: clamp(3.2rem, 6vw, 5.8rem);
+      line-height: 1.0; letter-spacing: -0.03em; margin-bottom: 1.8rem;
     }
+    h1 .name-accent { color: var(--accent); }
 
-    h1 em {
-      font-style: italic;
-      color: var(--accent);
+    .hero-desc {
+      font-size: 1.1rem; color: var(--muted); max-width: 520px;
+      margin-bottom: 2.5rem; font-weight: 300; line-height: 1.8;
     }
+    .hero-desc strong { color: var(--text); font-weight: 500; }
 
-    .hero-sub {
-      font-size: 1.05rem;
-      color: var(--muted);
-      max-width: 480px;
-      margin-bottom: 2.5rem;
-      font-weight: 300;
-    }
-
-    .hero-links {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
+    .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
 
     .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.7rem 1.4rem;
-      border-radius: 4px;
-      font-family: 'DM Mono', monospace;
-      font-size: 0.75rem;
-      letter-spacing: 0.08em;
-      text-decoration: none;
-      text-transform: uppercase;
-      transition: all 0.2s;
-      cursor: pointer;
-      border: none;
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      font-family: 'DM Mono', monospace; font-size: 0.73rem;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      text-decoration: none; border-radius: 4px; transition: all 0.2s;
+      cursor: pointer; border: none;
     }
+    .btn-solid { background: var(--accent); color: #09090b; font-weight: 500; }
+    .btn-solid:hover { background: #7affc4; transform: translateY(-1px); }
+    .btn-outline { background: transparent; color: var(--muted); border: 1px solid var(--border2); }
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
 
-    .btn-primary {
-      background: var(--accent);
-      color: #0a0c0f;
-      font-weight: 500;
-    }
+    .hero-facts { display: flex; flex-direction: column; gap: 1rem; }
 
-    .btn-primary:hover { background: #00ecc0; transform: translateY(-1px); }
-
-    .btn-ghost {
-      background: transparent;
-      color: var(--muted);
-      border: 1px solid var(--border);
-    }
-
-    .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
-
-    /* Hero right — stats */
-    .hero-right {
-      position: relative;
-      z-index: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-    }
-
-    .stat-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 1.5rem 2rem;
-      display: flex;
-      align-items: center;
-      gap: 1.5rem;
-      transition: border-color 0.2s, transform 0.2s;
-    }
-
-    .stat-card:hover { border-color: var(--accent); transform: translateX(4px); }
-
-    .stat-num {
-      font-family: 'DM Serif Display', serif;
-      font-size: 2.8rem;
-      color: var(--accent);
-      line-height: 1;
-      min-width: 80px;
-    }
-
-    .stat-label {
-      font-size: 0.9rem;
-      color: var(--muted);
-      font-weight: 300;
-    }
-
-    .stat-label strong { display: block; color: var(--text); font-size: 1rem; font-weight: 500; margin-bottom: 0.1rem; }
-
-    /* ── SECTIONS ── */
-    section { padding: 6rem 4rem; position: relative; z-index: 1; }
-    section:nth-child(even) { background: var(--bg2); }
-
-    .section-header {
-      display: flex;
-      align-items: baseline;
-      gap: 1.5rem;
-      margin-bottom: 3.5rem;
-    }
-
-    .section-num {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.72rem;
-      color: var(--accent);
-      letter-spacing: 0.2em;
-    }
-
-    h2 {
-      font-family: 'DM Serif Display', serif;
-      font-size: clamp(2rem, 4vw, 3rem);
-      letter-spacing: -0.02em;
-    }
-
-    /* ── ABOUT ── */
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1.2fr 1fr;
-      gap: 5rem;
-      align-items: start;
-    }
-
-    .about-text p {
-      font-size: 1.05rem;
-      color: var(--muted);
-      margin-bottom: 1.2rem;
-      font-weight: 300;
-    }
-
-    .about-text p strong { color: var(--text); font-weight: 500; }
-
-    .track-list { display: flex; flex-direction: column; gap: 0.8rem; }
-
-    .track {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      padding: 1rem 1.2rem;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      cursor: default;
+    .fact-row {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
+      padding: 1.2rem 1.5rem; display: flex; align-items: center; gap: 1.2rem;
       transition: border-color 0.2s;
     }
+    .fact-row:hover { border-color: var(--border2); }
 
-    .track:hover { border-color: var(--accent2); }
+    .fact-icon {
+      width: 36px; height: 36px; border-radius: 6px; background: var(--subtle);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; flex-shrink: 0;
+    }
+    .fact-label { font-family: 'DM Mono', monospace; font-size: 0.68rem; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.15rem; }
+    .fact-val { font-size: 0.92rem; font-weight: 500; }
 
-    .track-dot {
-      width: 8px; height: 8px;
-      border-radius: 50%;
-      background: var(--accent2);
-      flex-shrink: 0;
+    /* SECTIONS */
+    section { padding: 6rem 3.5rem; position: relative; z-index: 1; }
+    .section-bg { background: var(--bg2); }
+
+    .sh { display: flex; align-items: baseline; gap: 1.2rem; margin-bottom: 3.5rem; }
+    .sh-num { font-family: 'DM Mono', monospace; font-size: 0.68rem; color: var(--muted); letter-spacing: 0.15em; }
+
+    h2 {
+      font-family: 'Syne', sans-serif; font-weight: 700;
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem); letter-spacing: -0.02em;
     }
 
-    .track-dot.green { background: var(--accent); }
-    .track-dot.orange { background: #ff9f6b; }
-    .track-dot.pink { background: #ff6b9d; }
+    /* WHAT I DO */
+    .tracks-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 1px; background: var(--border);
+      border: 1px solid var(--border); border-radius: 10px; overflow: hidden;
+    }
+    .track-col {
+      background: var(--surface); padding: 2.5rem 2rem;
+      transition: background 0.2s;
+    }
+    .track-col:hover { background: var(--surface2); }
+    .track-dot { width: 10px; height: 10px; border-radius: 50%; margin-bottom: 1.5rem; }
+    .track-heading { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; margin-bottom: 0.6rem; }
+    .track-body { font-size: 0.85rem; color: var(--muted); font-weight: 300; line-height: 1.6; margin-bottom: 1.2rem; }
+    .track-stack { display: flex; flex-wrap: wrap; gap: 0.4rem; }
 
-    .track-name { font-size: 0.9rem; font-weight: 500; }
-    .track-desc { font-size: 0.78rem; color: var(--muted); margin-left: auto; font-family: 'DM Mono', monospace; }
+    .chip {
+      font-family: 'DM Mono', monospace; font-size: 0.65rem;
+      padding: 0.25rem 0.6rem; background: var(--subtle); color: var(--muted);
+      border-radius: 3px; letter-spacing: 0.04em;
+    }
 
-    /* ── RESEARCH ── */
-    .papers { display: flex; flex-direction: column; gap: 2rem; }
+    /* HOW I WORK */
+    .work-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 3rem; align-items: start;
+    }
 
-    .paper-card {
+    .work-intro {
+      font-size: 1.05rem; color: var(--muted); font-weight: 300;
+      line-height: 1.9; margin-bottom: 2rem;
+    }
+    .work-intro strong { color: var(--text); font-weight: 500; }
+
+    .work-quote {
+      border-left: 2px solid var(--accent);
+      padding: 1rem 1.5rem;
       background: var(--surface);
-      border: 1px solid var(--border);
-      border-left: 3px solid var(--accent);
-      border-radius: 8px;
-      padding: 2rem 2.5rem;
+      border-radius: 0 6px 6px 0;
+      font-style: italic;
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+    .work-quote cite {
+      display: block; margin-top: 0.6rem; font-style: normal;
+      font-family: 'DM Mono', monospace; font-size: 0.68rem;
+      color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase;
+    }
+
+    .traits { display: flex; flex-direction: column; gap: 0.9rem; }
+
+    .trait {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
+      padding: 1.3rem 1.5rem; display: flex; gap: 1.2rem; align-items: flex-start;
       transition: border-color 0.2s, transform 0.2s;
     }
+    .trait:hover { border-color: var(--border2); transform: translateX(4px); }
+    .trait-emoji { font-size: 1.2rem; flex-shrink: 0; margin-top: 0.1rem; }
+    .trait-name { font-family: 'Syne', sans-serif; font-weight: 600; font-size: 0.92rem; margin-bottom: 0.2rem; }
+    .trait-desc { font-size: 0.83rem; color: var(--muted); font-weight: 300; line-height: 1.5; }
 
-    .paper-card:hover { transform: translateY(-2px); border-color: var(--accent); }
-
-    .paper-meta {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      margin-bottom: 0.8rem;
-      flex-wrap: wrap;
-    }
-
-    .paper-venue {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.7rem;
-      color: var(--accent);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-    }
-
-    .paper-year {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.7rem;
-      color: var(--muted);
-    }
-
-    .paper-title {
-      font-family: 'DM Serif Display', serif;
-      font-size: 1.3rem;
-      margin-bottom: 0.8rem;
-      line-height: 1.3;
-    }
-
-    .paper-summary {
-      font-size: 0.9rem;
-      color: var(--muted);
-      margin-bottom: 1.2rem;
-      font-weight: 300;
-    }
-
-    .paper-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.2rem; }
-
-    .tag {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.68rem;
-      padding: 0.3rem 0.7rem;
-      background: var(--label);
-      color: var(--muted);
-      border-radius: 3px;
-      letter-spacing: 0.05em;
-    }
-
-    .paper-link {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.72rem;
-      color: var(--accent);
-      text-decoration: none;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-    }
-
-    .paper-link:hover { color: #00ecc0; }
-
-    /* ── PROJECTS ── */
+    /* PROJECTS */
     .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 1.5rem;
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.2rem;
     }
 
     .project-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 2rem;
+      background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
+      padding: 1.8rem; display: flex; flex-direction: column;
       transition: border-color 0.2s, transform 0.2s;
-      display: flex;
-      flex-direction: column;
     }
+    .project-card:hover { border-color: var(--accent2); transform: translateY(-2px); }
 
-    .project-card:hover { border-color: var(--accent2); transform: translateY(-3px); }
+    .project-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem; }
+    .project-icon { width: 38px; height: 38px; background: var(--subtle); border-radius: 7px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; }
+    .project-type { font-family: 'DM Mono', monospace; font-size: 0.63rem; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; }
+    .project-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.02rem; margin-bottom: 0.6rem; }
+    .project-desc { font-size: 0.85rem; color: var(--muted); font-weight: 300; flex: 1; margin-bottom: 1.2rem; line-height: 1.6; }
+    .project-stack { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 1rem; }
+    .project-links { display: flex; gap: 0.7rem; }
 
-    .project-icon {
-      width: 40px; height: 40px;
-      border-radius: 8px;
-      background: var(--label);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.2rem;
-      margin-bottom: 1.2rem;
-    }
-
-    .project-title {
-      font-family: 'DM Serif Display', serif;
-      font-size: 1.15rem;
-      margin-bottom: 0.6rem;
-    }
-
-    .project-desc {
-      font-size: 0.88rem;
-      color: var(--muted);
-      font-weight: 300;
-      flex: 1;
-      margin-bottom: 1.2rem;
-    }
-
-    .project-stack { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 1.2rem; }
-
-    .project-links { display: flex; gap: 0.8rem; margin-top: auto; }
-
-    .project-link {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.68rem;
-      color: var(--muted);
-      text-decoration: none;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      border: 1px solid var(--border);
-      padding: 0.35rem 0.8rem;
-      border-radius: 3px;
+    .plink {
+      font-family: 'DM Mono', monospace; font-size: 0.65rem; color: var(--muted);
+      text-decoration: none; letter-spacing: 0.08em; text-transform: uppercase;
+      border: 1px solid var(--border); padding: 0.3rem 0.75rem; border-radius: 3px;
       transition: all 0.2s;
     }
+    .plink:hover { border-color: var(--accent2); color: var(--accent2); }
 
-    .project-link:hover { border-color: var(--accent2); color: var(--accent2); }
-
-    /* ── CVs ── */
-    .cv-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 1.2rem;
+    /* RESEARCH compact */
+    .papers-compact {
+      display: flex; flex-direction: column; gap: 1px;
+      background: var(--border); border: 1px solid var(--border);
+      border-radius: 10px; overflow: hidden;
     }
+
+    .paper-row {
+      background: var(--surface); padding: 1.8rem 2.2rem;
+      display: grid; grid-template-columns: 140px 1fr auto;
+      gap: 2rem; align-items: center; transition: background 0.2s;
+    }
+    .paper-row:hover { background: var(--surface2); }
+
+    .paper-venue-badge {
+      font-family: 'DM Mono', monospace; font-size: 0.65rem;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 0.3rem 0.7rem; border-radius: 3px; text-align: center;
+    }
+    .paper-row-title { font-family: 'Syne', sans-serif; font-weight: 600; font-size: 0.95rem; margin-bottom: 0.3rem; }
+    .paper-row-summary { font-size: 0.82rem; color: var(--muted); font-weight: 300; }
+    .paper-doi {
+      font-family: 'DM Mono', monospace; font-size: 0.65rem; color: var(--muted);
+      text-decoration: none; white-space: nowrap; transition: color 0.2s;
+    }
+    .paper-doi:hover { color: var(--accent); }
+
+    /* CVs */
+    .cv-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; }
 
     .cv-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 1.8rem;
-      transition: all 0.2s;
-      text-decoration: none;
-      color: inherit;
-      display: block;
+      background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
+      padding: 1.8rem; text-decoration: none; color: inherit;
+      transition: all 0.2s; display: flex; flex-direction: column; gap: 0.5rem;
     }
-
     .cv-card:hover { border-color: var(--accent); transform: translateY(-2px); }
-
-    .cv-role {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.68rem;
-      color: var(--accent);
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      margin-bottom: 0.5rem;
-    }
-
-    .cv-title {
-      font-family: 'DM Serif Display', serif;
-      font-size: 1.2rem;
-      margin-bottom: 0.6rem;
-    }
-
+    .cv-track { font-family: 'DM Mono', monospace; font-size: 0.65rem; color: var(--accent); letter-spacing: 0.12em; text-transform: uppercase; }
+    .cv-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.05rem; }
     .cv-desc { font-size: 0.82rem; color: var(--muted); font-weight: 300; }
+    .cv-arrow { margin-top: auto; padding-top: 1rem; font-family: 'DM Mono', monospace; font-size: 0.68rem; color: var(--muted); }
 
-    /* ── CONTACT ── */
-    .contact-inner {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 5rem;
-      align-items: center;
+    /* CONTACT */
+    .contact-layout { display: grid; grid-template-columns: 1fr 1.2fr; gap: 5rem; align-items: center; }
+    .contact-intro { font-size: 1rem; color: var(--muted); font-weight: 300; line-height: 1.9; }
+    .contact-intro strong { color: var(--text); font-weight: 500; }
+    .contact-cards { display: flex; flex-direction: column; gap: 0.9rem; }
+
+    .contact-card {
+      display: flex; align-items: center; gap: 1.2rem;
+      padding: 1.1rem 1.5rem;
+      background: var(--surface); border: 1px solid var(--border); border-radius: 7px;
+      text-decoration: none; color: var(--text); transition: all 0.2s;
     }
+    .contact-card:hover { border-color: var(--accent); color: var(--accent); }
+    .cc-icon { width: 34px; height: 34px; background: var(--subtle); border-radius: 5px; display: flex; align-items: center; justify-content: center; font-size: 0.95rem; flex-shrink: 0; }
+    .cc-label { font-family: 'DM Mono', monospace; font-size: 0.63rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; }
+    .cc-val { font-size: 0.9rem; font-weight: 500; }
 
-    .contact-text h2 { margin-bottom: 1rem; }
-    .contact-text p { color: var(--muted); font-weight: 300; font-size: 1.05rem; }
-
-    .contact-links { display: flex; flex-direction: column; gap: 1rem; }
-
-    .contact-item {
-      display: flex;
-      align-items: center;
-      gap: 1.2rem;
-      padding: 1.2rem 1.5rem;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      text-decoration: none;
-      color: var(--text);
-      transition: all 0.2s;
-    }
-
-    .contact-item:hover { border-color: var(--accent); color: var(--accent); }
-
-    .contact-item-icon {
-      font-size: 1.2rem;
-      min-width: 24px;
-      text-align: center;
-    }
-
-    .contact-item-label {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.75rem;
-      color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
-
-    .contact-item-val { font-size: 0.95rem; font-weight: 400; }
-
-    /* ── FOOTER ── */
     footer {
-      padding: 2rem 4rem;
-      border-top: 1px solid var(--border);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      padding: 1.8rem 3.5rem; border-top: 1px solid var(--border);
+      display: flex; justify-content: space-between; align-items: center;
     }
+    .fc { font-family: 'DM Mono', monospace; font-size: 0.65rem; color: var(--subtle); letter-spacing: 0.08em; }
 
-    .footer-copy {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.72rem;
-      color: var(--label);
-      letter-spacing: 0.08em;
-    }
+    /* FADE */
+    .fu { opacity: 0; transform: translateY(20px); transition: opacity 0.55s ease, transform 0.55s ease; }
+    .fu.vis { opacity: 1; transform: translateY(0); }
 
-    /* ── ANIMATIONS ── */
-    .fade-up {
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
-
-    .fade-up.visible { opacity: 1; transform: translateY(0); }
-
-    /* ── RESPONSIVE ── */
+    @media (max-width: 1100px) { .tracks-grid { grid-template-columns: repeat(2, 1fr); } }
     @media (max-width: 900px) {
       nav { padding: 1rem 2rem; }
-      .hero { grid-template-columns: 1fr; padding: 7rem 2rem 3rem; min-height: auto; }
-      .hero-right { display: none; }
+      .hero { grid-template-columns: 1fr; padding: 7rem 2rem 4rem; min-height: auto; }
+      .hero-facts { display: none; }
       section { padding: 4rem 2rem; }
-      .about-grid, .contact-inner { grid-template-columns: 1fr; gap: 2.5rem; }
-      footer { flex-direction: column; gap: 0.5rem; padding: 1.5rem 2rem; }
+      .work-grid, .contact-layout { grid-template-columns: 1fr; gap: 2.5rem; }
+      .paper-row { grid-template-columns: 1fr; gap: 0.6rem; }
+      .paper-doi { display: none; }
+      footer { flex-direction: column; gap: 0.4rem; padding: 1.5rem 2rem; }
     }
-
     @media (max-width: 600px) {
       .nav-links { display: none; }
+      .tracks-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
 
-  <!-- NAV -->
-  <nav>
-    <a class="nav-logo" href="#">nw.dev</a>
-    <ul class="nav-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#research">Research</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#cvs">CVs</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </nav>
+<nav>
+  <a class="nav-logo" href="#">Nick<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#what">What I Do</a></li>
+    <li><a href="#how">How I Work</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#research">Research</a></li>
+    <li><a href="#cvs">CVs</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
 
-  <!-- HERO -->
-  <div class="hero">
-    <div class="hero-grid-bg"></div>
-    <div class="hero-left fade-up">
-      <div class="hero-tag">Engineer &amp; Researcher · Toronto, ON</div>
-      <h1>Nick<br><em>(Nujitha W.)</em></h1>
-      <p class="hero-sub">
-        I build things that are hard to break — from distributed backend systems 
-        and ML intrusion detection to full-stack apps and published research on 
-        6G network security.
-      </p>
-      <div class="hero-links">
-        <a href="https://github.com/YOUR_GITHUB" class="btn btn-primary" target="_blank">↗ GitHub</a>
-        <a href="https://linkedin.com/in/YOUR_LINKEDIN" class="btn btn-ghost" target="_blank">LinkedIn</a>
-        <a href="mailto:nujithaw@gmail.com" class="btn btn-ghost">Email Me</a>
+<div class="hero">
+  <div class="hero-left fu">
+    <div class="hero-eyebrow">Software Engineer · Waterloo, ON</div>
+    <h1>I build<br>things that<br><span class="name-accent">hold up.</span></h1>
+    <p class="hero-desc">
+      3+ years shipping <strong>production systems</strong> — microservices, ML pipelines, full-stack apps.
+      I care about code that's readable, systems that don't break at 2am,
+      and teams that actually work well together.
+    </p>
+    <div class="hero-cta">
+      <a href="https://github.com/YOUR_GITHUB" class="btn btn-solid" target="_blank">↗ GitHub</a>
+      <a href="https://linkedin.com/in/YOUR_LINKEDIN" class="btn btn-outline" target="_blank">LinkedIn</a>
+      <a href="mailto:nujithaw@gmail.com" class="btn btn-outline">Email Me</a>
+    </div>
+  </div>
+  <div class="hero-facts fu" style="transition-delay:0.12s">
+    <div class="fact-row">
+      <div class="fact-icon">🏗️</div>
+      <div><div class="fact-label">Experience</div><div class="fact-val">3+ years, production systems</div></div>
+    </div>
+    <div class="fact-row">
+      <div class="fact-icon">🌐</div>
+      <div><div class="fact-label">Cloud</div><div class="fact-val">AWS · GCP · Azure</div></div>
+    </div>
+    <div class="fact-row">
+      <div class="fact-icon">📄</div>
+      <div><div class="fact-label">Research</div><div class="fact-val">3 papers — IEEE · Elsevier</div></div>
+    </div>
+    <div class="fact-row">
+      <div class="fact-icon">🎓</div>
+      <div><div class="fact-label">Education</div><div class="fact-val">MSc Computer Science, 95% · Brock</div></div>
+    </div>
+    <div class="fact-row">
+      <div class="fact-icon">📍</div>
+      <div><div class="fact-label">Location</div><div class="fact-val">Waterloo, ON — open to hybrid/remote</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- WHAT I DO -->
+<section id="what" class="section-bg">
+  <div class="sh fu"><span class="sh-num">01 —</span><h2>What I do</h2></div>
+  <div class="tracks-grid fu" style="transition-delay:0.08s">
+    <div class="track-col">
+      <div class="track-dot" style="background:#4fffb0"></div>
+      <div class="track-heading">Backend &amp; Cloud</div>
+      <p class="track-body">Microservices, REST APIs, CI/CD pipelines. Built systems handling 10k+ daily transactions across 100+ global clients with 99%+ uptime.</p>
+      <div class="track-stack">
+        <span class="chip">Java Spring Boot</span><span class="chip">AWS</span><span class="chip">Docker</span><span class="chip">Kubernetes</span><span class="chip">Jenkins</span>
       </div>
     </div>
-    <div class="hero-right fade-up" style="transition-delay:0.15s">
-      <div class="stat-card">
-        <div class="stat-num">3+</div>
-        <div class="stat-label">
-          <strong>Years Experience</strong>
-          Backend · Full Stack · ML
+    <div class="track-col">
+      <div class="track-dot" style="background:#6e7bff"></div>
+      <div class="track-heading">Full Stack</div>
+      <p class="track-body">Angular frontends to Spring Boot backends, end-to-end. Responsive, accessible UIs for ERP systems used across airports and defence clients.</p>
+      <div class="track-stack">
+        <span class="chip">Angular</span><span class="chip">TypeScript</span><span class="chip">.NET</span><span class="chip">PostgreSQL</span><span class="chip">Redis</span>
+      </div>
+    </div>
+    <div class="track-col">
+      <div class="track-dot" style="background:#ffb84d"></div>
+      <div class="track-heading">ML Engineering</div>
+      <p class="track-body">End-to-end ML pipelines — data preprocessing to model deployment. Specialised in anomaly detection and network security with published outcomes.</p>
+      <div class="track-stack">
+        <span class="chip">Python</span><span class="chip">TensorFlow</span><span class="chip">scikit-learn</span><span class="chip">PyTorch</span><span class="chip">BERT</span>
+      </div>
+    </div>
+    <div class="track-col">
+      <div class="track-dot" style="background:#ff6b9d"></div>
+      <div class="track-heading">DevOps &amp; Infra</div>
+      <p class="track-body">Zero-downtime deployments, blue-green strategies, automated testing. Reduced deployment cycles across multi-environment cloud releases.</p>
+      <div class="track-stack">
+        <span class="chip">GitLab CI/CD</span><span class="chip">Terraform</span><span class="chip">Linux</span><span class="chip">Bash</span><span class="chip">ELK</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW I WORK -->
+<section id="how">
+  <div class="sh fu"><span class="sh-num">02 —</span><h2>How I work</h2></div>
+  <div class="work-grid">
+    <div>
+      <p class="work-intro fu">
+        I've shipped code in <strong>globally distributed Agile teams</strong>, mentored students 1-on-1, and judged engineering competitions. That range shapes how I show up — I give honest code reviews, explain things clearly, and don't disappear when something breaks in prod.
+      </p>
+      <div class="work-quote fu" style="transition-delay:0.08s">
+        At IFS I was working across time zones — Sri Lanka and Europe simultaneously. That'll teach you fast how to communicate clearly, document properly, and not block others on your work.
+        <cite>— on distributed collaboration</cite>
+      </div>
+    </div>
+    <div class="traits fu" style="transition-delay:0.1s">
+      <div class="trait">
+        <div class="trait-emoji">🤝</div>
+        <div>
+          <div class="trait-name">Team-first, not ego-first</div>
+          <div class="trait-desc">Regular code reviews and pair programming at IFS across cross-functional Agile sprints. I care about what the team ships, not who gets credit.</div>
         </div>
       </div>
-      <div class="stat-card">
-        <div class="stat-num">3</div>
-        <div class="stat-label">
-          <strong>Peer-Reviewed Papers</strong>
-          IEEE · Elsevier · Published 2021–2026
+      <div class="trait">
+        <div class="trait-emoji">🧑‍🏫</div>
+        <div>
+          <div class="trait-name">I explain things well</div>
+          <div class="trait-desc">Teaching Assistant at Brock — led labs for 20+ students, 1-on-1 debugging sessions. If I understand something, I can make someone else understand it too.</div>
         </div>
       </div>
-      <div class="stat-card">
-        <div class="stat-num">95%</div>
-        <div class="stat-label">
-          <strong>MSc Grade, Brock University</strong>
-          Computer Science · Class of 2025
+      <div class="trait">
+        <div class="trait-emoji">🏆</div>
+        <div>
+          <div class="trait-name">I take ownership</div>
+          <div class="trait-desc">Handled production incident management at IFS — root cause analysis, fix deployment, postmortem. I don't wait around for someone else to take the lead.</div>
         </div>
       </div>
-      <div class="stat-card">
-        <div class="stat-num">1st</div>
-        <div class="stat-label">
-          <strong>Class Bachelors Engineer, University of Westminster</strong>
-          Software Engineering · Class of 2022
+      <div class="trait">
+        <div class="trait-emoji">🤖</div>
+        <div>
+          <div class="trait-name">Genuinely multi-disciplinary</div>
+          <div class="trait-desc">Judge at FIRST Ontario Robotics Championships — evaluating autonomous systems and engineering rigour from student teams. I bring the same cross-domain thinking to my work.</div>
+        </div>
+      </div>
+      <div class="trait">
+        <div class="trait-emoji">🌍</div>
+        <div>
+          <div class="trait-name">Adapts fast, asks smart questions</div>
+          <div class="trait-desc">Moved contexts — Sri Lanka → UK → Canada across different engineering cultures. I get up to speed without hand-holding and ask the right questions early.</div>
         </div>
       </div>
     </div>
   </div>
+</section>
 
-  <!-- ABOUT -->
-  <section id="about">
-    <div class="section-header fade-up">
-      <span class="section-num">01 —</span>
-      <h2>About</h2>
-    </div>
-    <div class="about-grid">
-      <div class="about-text fade-up">
-        <p>
-          I'm a software engineer with a research edge. My background spans <strong>production backend systems</strong> at scale (IFS, Avtra) and <strong>ML research</strong> that's made it into IEEE and Elsevier journals.
-        </p>
-        <p>
-          I like problems that sit at the boundary between systems and intelligence — whether that's detecting RF jamming in vehicular networks using transformers, or engineering zero-downtime deployments for 100+ global clients.
-        </p>
-        <p>
-          Currently based in Toronto, ON. Open to roles across <strong>ML/AI, backend, full-stack,</strong> and <strong>research engineering</strong>.
-        </p>
-      </div>
-      <div class="track-list fade-up" style="transition-delay:0.1s">
-        <div class="track">
-          <div class="track-dot green"></div>
-          <span class="track-name">ML / AI Engineering</span>
-          <span class="track-desc">Python · TF · PyTorch</span>
-        </div>
-        <div class="track">
-          <div class="track-dot"></div>
-          <span class="track-name">Backend / Cloud</span>
-          <span class="track-desc">Java · AWS · Docker</span>
-        </div>
-        <div class="track">
-          <div class="track-dot orange"></div>
-          <span class="track-name">Full Stack</span>
-          <span class="track-desc">Angular · Spring Boot</span>
-        </div>
-        <div class="track">
-          <div class="track-dot pink"></div>
-          <span class="track-name">Research / Academia</span>
-          <span class="track-desc">IEEE · Elsevier · 3 papers</span>
-        </div>
-      </div>
-    </div>
-  </section>
+<!-- PROJECTS -->
+<section id="projects" class="section-bg">
+  <div class="sh fu"><span class="sh-num">03 —</span><h2>Projects</h2></div>
+  <div class="projects-grid">
 
-  <!-- RESEARCH -->
-  <section id="research">
-    <div class="section-header fade-up">
-      <span class="section-num">02 —</span>
-      <h2>Research</h2>
-    </div>
-    <div class="papers">
-
-      <div class="paper-card fade-up">
-        <div class="paper-meta">
-          <span class="paper-venue">Elsevier IJCIP</span>
-          <span class="paper-year">· 2026</span>
-        </div>
-        <div class="paper-title">ML and Meta-Model Approaches for Intrusion Detection</div>
-        <p class="paper-summary">
-          Novel IDS architecture combining LSTM and XGBoost with ensemble meta-models. Achieved 96.2% detection accuracy and 94.8% F1-score on NSL-KDD and CICIDS2017 — with faster inference than baseline models. Demonstrated applicability to 5G core network traffic and IoT anomaly detection.
-        </p>
-        <div class="paper-tags">
-          <span class="tag">LSTM</span><span class="tag">XGBoost</span><span class="tag">Ensemble</span><span class="tag">5G</span><span class="tag">NSL-KDD</span>
-        </div>
-        <a class="paper-link" href="https://doi.org/10.1016/j.ijcip.2026.100830" target="_blank">↗ DOI: 10.1016/j.ijcip.2026.100830</a>
-      </div>
-
-      <div class="paper-card fade-up" style="transition-delay:0.1s; border-left-color: var(--accent2);">
-        <div class="paper-meta">
-          <span class="paper-venue" style="color:var(--accent2)">IEEE SysCon</span>
-          <span class="paper-year">· 2025</span>
-        </div>
-        <div class="paper-title">RF Jamming Intrusion Detection for Vehicular Networks using LLM</div>
-        <p class="paper-summary">
-          Pioneered BERT for RF jamming detection in VANETs — converting physical-layer RF signals to tokenized sequences. Achieved 95.3% accuracy across 100,000+ CAN bus messages, with 200ms latency suitable for real-time vehicular safety. Built a live PoC with Docker + Streamlit.
-        </p>
-        <div class="paper-tags">
-          <span class="tag">BERT</span><span class="tag">VANETs</span><span class="tag">RF Jamming</span><span class="tag">V2X</span><span class="tag">6G</span>
-        </div>
-        <a class="paper-link" href="https://doi.org/10.1109/SysCon64521.2025.11014799" target="_blank" style="color:var(--accent2)">↗ DOI: 10.1109/SysCon64521.2025.11014799</a>
-      </div>
-
-      <div class="paper-card fade-up" style="transition-delay:0.2s; border-left-color: #ff9f6b;">
-        <div class="paper-meta">
-          <span class="paper-venue" style="color:#ff9f6b">IEEE ASIANCON</span>
-          <span class="paper-year">· 2021</span>
-        </div>
-        <div class="paper-title">Automated Marketing Campaign Predictions using ML</div>
-        <p class="paper-summary">
-          Ensemble model combining decision trees and neural networks for campaign ROI prediction. Achieved 87% accuracy using iterative prototyping with stakeholder feedback and A/B validation. End-to-end data pipeline with automated feature engineering and deployment.
-        </p>
-        <div class="paper-tags">
-          <span class="tag">Ensemble ML</span><span class="tag">Neural Net</span><span class="tag">Decision Trees</span><span class="tag">A/B Testing</span>
-        </div>
-        <a class="paper-link" href="https://doi.org/10.1109/ASIANCON51346.2021.9544552" target="_blank" style="color:#ff9f6b">↗ DOI: 10.1109/ASIANCON51346.2021.9544552</a>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- PROJECTS -->
-  <section id="projects">
-    <div class="section-header fade-up">
-      <span class="section-num">03 —</span>
-      <h2>Projects</h2>
-    </div>
-    <div class="projects-grid">
-
-      <div class="project-card fade-up">
+    <div class="project-card fu">
+      <div class="project-top">
         <div class="project-icon">🛡️</div>
-        <div class="project-title">Transformer-Based RF Jamming Detection</div>
-        <p class="project-desc">
-          Evaluated BERT, RoBERTa, DistilBERT, and ALBERT for RF jamming in vehicular networks. 96.25% accuracy at high mobility. DistilBERT achieved 59% faster training vs BERT. Live PoC via Streamlit + Docker.
-        </p>
-        <div class="project-stack">
-          <span class="tag">PyTorch</span><span class="tag">BERT</span><span class="tag">Docker</span><span class="tag">Streamlit</span>
-        </div>
-        <div class="project-links">
-          <a href="#" class="project-link">↗ GitHub</a>
-          <a href="#" class="project-link">↗ Paper</a>
-        </div>
+        <span class="project-type">ML · Security</span>
       </div>
+      <div class="project-title">Transformer RF Jamming Detector</div>
+      <p class="project-desc">Compared BERT, RoBERTa, DistilBERT, ALBERT for RF jamming in VANETs. DistilBERT ran 59% faster than BERT with comparable accuracy — deployed live via Streamlit + Docker.</p>
+      <div class="project-stack"><span class="chip">PyTorch</span><span class="chip">BERT</span><span class="chip">Docker</span><span class="chip">Streamlit</span></div>
+      <div class="project-links">
+        <a href="#" class="plink">↗ GitHub</a>
+        <a href="https://doi.org/10.1109/SysCon64521.2025.11014799" class="plink" target="_blank">↗ Paper</a>
+      </div>
+    </div>
 
-      <div class="project-card fade-up" style="transition-delay:0.05s">
+    <div class="project-card fu" style="transition-delay:0.04s">
+      <div class="project-top">
         <div class="project-icon">🔐</div>
-        <div class="project-title">AI Continuous Authentication for IoT &amp; 6G</div>
-        <p class="project-desc">
-          LSTM and Attention-LSTM for continuous authentication on 60-user ExtraSensory dataset. 87% accuracy, 3.33% Equal Error Rate. Lightweight models for resource-constrained IoT devices.
-        </p>
-        <div class="project-stack">
-          <span class="tag">TensorFlow</span><span class="tag">LSTM</span><span class="tag">IoT</span><span class="tag">6G</span>
-        </div>
-        <div class="project-links">
-          <a href="#" class="project-link">↗ GitHub</a>
-          <a href="#" class="project-link">↗ Report</a>
-        </div>
+        <span class="project-type">ML · IoT · 6G</span>
       </div>
+      <div class="project-title">Continuous Auth for IoT &amp; 6G</div>
+      <p class="project-desc">LSTM and Attention-LSTM for zero-trust continuous authentication using smartphone sensors. Lightweight enough for edge devices — 87% accuracy on a 60-user dataset.</p>
+      <div class="project-stack"><span class="chip">TensorFlow</span><span class="chip">LSTM</span><span class="chip">Python</span><span class="chip">6G</span></div>
+      <div class="project-links">
+        <a href="#" class="plink">↗ GitHub</a>
+        <a href="#" class="plink">↗ Report</a>
+      </div>
+    </div>
 
-      <div class="project-card fade-up" style="transition-delay:0.1s">
+    <div class="project-card fu" style="transition-delay:0.08s">
+      <div class="project-top">
         <div class="project-icon">☁️</div>
-        <div class="project-title">Cloud Network Intrusion Detection System</div>
-        <p class="project-desc">
-          Distributed IDS using convolutional autoencoders (PyTorch) on NSL-KDD. 92% detection, resilient to 15% packet corruption. Deployed on AWS EC2 with Docker, inter-node messaging, and ELK logging.
-        </p>
-        <div class="project-stack">
-          <span class="tag">PyTorch</span><span class="tag">AWS EC2</span><span class="tag">Docker</span><span class="tag">ELK</span>
-        </div>
-        <div class="project-links">
-          <a href="#" class="project-link">↗ GitHub</a>
-        </div>
+        <span class="project-type">Cloud · Security</span>
       </div>
+      <div class="project-title">Cloud Network IDS</div>
+      <p class="project-desc">Distributed IDS with convolutional autoencoders on NSL-KDD. Multi-node setup on AWS EC2 with Docker + ELK stack — resilient to 15% packet loss.</p>
+      <div class="project-stack"><span class="chip">PyTorch</span><span class="chip">AWS EC2</span><span class="chip">Docker</span><span class="chip">ELK</span></div>
+      <div class="project-links"><a href="#" class="plink">↗ GitHub</a></div>
+    </div>
 
-      <div class="project-card fade-up" style="transition-delay:0.15s">
+    <div class="project-card fu" style="transition-delay:0.12s">
+      <div class="project-top">
         <div class="project-icon">🔑</div>
-        <div class="project-title">Post-Quantum Cryptography for 5G/6G</div>
-        <p class="project-desc">
-          Implemented McEliece cryptosystem with Goppa codes for quantum-resistant encryption. Evaluated NIST PQC candidates (BIKE, QC-MDPC, LDPC) for next-generation wireless security standards.
-        </p>
-        <div class="project-stack">
-          <span class="tag">Python</span><span class="tag">Post-Quantum</span><span class="tag">5G</span><span class="tag">3GPP</span>
-        </div>
-        <div class="project-links">
-          <a href="#" class="project-link">↗ Report</a>
-        </div>
+        <span class="project-type">Cryptography · 5G</span>
       </div>
+      <div class="project-title">Post-Quantum Crypto for 5G/6G</div>
+      <p class="project-desc">McEliece cryptosystem with Goppa codes for quantum-resistant wireless encryption. Evaluated NIST PQC candidates (BIKE, QC-MDPC) — analysed security vs efficiency trade-offs.</p>
+      <div class="project-stack"><span class="chip">Python</span><span class="chip">Post-Quantum</span><span class="chip">3GPP</span></div>
+      <div class="project-links"><a href="#" class="plink">↗ Report</a></div>
+    </div>
 
-      <div class="project-card fade-up" style="transition-delay:0.2s">
+    <div class="project-card fu" style="transition-delay:0.16s">
+      <div class="project-top">
         <div class="project-icon">📡</div>
-        <div class="project-title">Network Optimization via Graph Algorithms</div>
-        <p class="project-desc">
-          Ford-Fulkerson max flow using JGraphT, applicable to wireless mesh routing and satellite constellation management. Graph-based approaches relevant to 5G/6G physical layer specs.
-        </p>
-        <div class="project-stack">
-          <span class="tag">Java</span><span class="tag">JGraphT</span><span class="tag">Algorithms</span>
-        </div>
-        <div class="project-links">
-          <a href="#" class="project-link">↗ GitHub</a>
-        </div>
+        <span class="project-type">Algorithms · Networking</span>
       </div>
+      <div class="project-title">Network Optimisation via Graph Algorithms</div>
+      <p class="project-desc">Ford-Fulkerson max flow using JGraphT — applicable to wireless mesh routing and satellite constellation management. Graph-based code bounds with backtracking optimisation.</p>
+      <div class="project-stack"><span class="chip">Java</span><span class="chip">JGraphT</span><span class="chip">Algorithms</span></div>
+      <div class="project-links"><a href="#" class="plink">↗ GitHub</a></div>
+    </div>
 
-      <div class="project-card fade-up" style="transition-delay:0.25s">
+    <div class="project-card fu" style="transition-delay:0.2s">
+      <div class="project-top">
         <div class="project-icon">🧠</div>
-        <div class="project-title">VAE-Based Signal Super-Resolution</div>
-        <p class="project-desc">
-          Variational Autoencoder with perceptual loss functions in PyTorch for image super-resolution. Techniques applicable to signal enhancement and compression in wireless communications.
-        </p>
-        <div class="project-stack">
-          <span class="tag">PyTorch</span><span class="tag">VAE</span><span class="tag">Deep Learning</span>
-        </div>
-        <div class="project-links">
-          <a href="#" class="project-link">↗ GitHub</a>
-        </div>
+        <span class="project-type">Deep Learning · Signal</span>
       </div>
-
+      <div class="project-title">VAE Signal Super-Resolution</div>
+      <p class="project-desc">Variational Autoencoder with perceptual loss functions for super-resolution in PyTorch. Techniques directly applicable to signal compression in wireless communications.</p>
+      <div class="project-stack"><span class="chip">PyTorch</span><span class="chip">VAE</span><span class="chip">Python</span></div>
+      <div class="project-links"><a href="#" class="plink">↗ GitHub</a></div>
     </div>
-  </section>
 
-  <!-- CVs -->
-  <section id="cvs">
-    <div class="section-header fade-up">
-      <span class="section-num">04 —</span>
-      <h2>Pick your version of me</h2>
-    </div>
-    <p class="fade-up" style="color: var(--muted); margin-bottom: 2.5rem; font-weight:300; max-width:560px;">
-      I tailor my CV to the role. Choose the one that matches what you're hiring for — each is written specifically for that track.
-    </p>
-    <div class="cv-grid">
-      <a href="YOUR_ML_CV_LINK" class="cv-card fade-up" target="_blank">
-        <div class="cv-role">ML / AI</div>
-        <div class="cv-title">ML Engineer</div>
-        <p class="cv-desc">IDS systems, scikit-learn, TensorFlow, anomaly detection, published research</p>
-      </a>
-      <a href="YOUR_BACKEND_CV_LINK" class="cv-card fade-up" target="_blank" style="transition-delay:0.05s">
-        <div class="cv-role">Backend / Cloud</div>
-        <div class="cv-title">Backend Engineer</div>
-        <p class="cv-desc">Java Spring Boot, AWS/GCP/Azure, microservices, CI/CD, 99%+ uptime</p>
-      </a>
-      <a href="YOUR_FULLSTACK_CV_LINK" class="cv-card fade-up" target="_blank" style="transition-delay:0.1s">
-        <div class="cv-role">Full Stack</div>
-        <div class="cv-title">Full Stack Developer</div>
-        <p class="cv-desc">Angular + Spring Boot, REST APIs, responsive UI, ERP systems at scale</p>
-      </a>
-      <a href="YOUR_RESEARCH_CV_LINK" class="cv-card fade-up" target="_blank" style="transition-delay:0.15s">
-        <div class="cv-role">Research / Network</div>
-        <div class="cv-title">Research / Network Engineer</div>
-        <p class="cv-desc">3 IEEE/Elsevier papers, 5G/6G security, VANETs, BERT, wireless protocols</p>
-      </a>
-    </div>
-  </section>
+  </div>
+</section>
 
-  <!-- CONTACT -->
-  <section id="contact">
-    <div class="contact-inner">
-      <div class="contact-text fade-up">
-        <div class="section-header" style="margin-bottom:1rem">
-          <span class="section-num">05 —</span>
-          <h2>Let's talk</h2>
-        </div>
-        <p>Open to full-time roles, research collaborations, and interesting projects. I usually respond within an hour.</p>
+<!-- RESEARCH -->
+<section id="research">
+  <div class="sh fu"><span class="sh-num">04 —</span><h2>Published research</h2></div>
+  <div class="papers-compact fu">
+    <div class="paper-row">
+      <div><div class="paper-venue-badge" style="background:rgba(78,255,176,0.08);color:var(--accent)">Elsevier IJCIP · 2026</div></div>
+      <div>
+        <div class="paper-row-title">ML and Meta-Model Approaches for Intrusion Detection</div>
+        <div class="paper-row-summary">LSTM + XGBoost ensemble — 96.2% accuracy on NSL-KDD/CICIDS2017. Applicable to 5G core network security.</div>
       </div>
-      <div class="contact-links fade-up" style="transition-delay:0.1s">
-        <a href="mailto:nujithaw@gmail.com" class="contact-item">
-          <span class="contact-item-icon">✉</span>
-          <div>
-            <div class="contact-item-label">Email</div>
-            <div class="contact-item-val">nujithaw@gmail.com</div>
-          </div>
-        </a>
-        <a href="https://linkedin.com/in/nujitha" class="contact-item" target="_blank">
-          <span class="contact-item-icon">in</span>
-          <div>
-            <div class="contact-item-label">LinkedIn</div>
-            <div class="contact-item-val">linkedin.com/in/nujitha</div>
-          </div>
-        </a>
-        <a href="https://github.com/nujitha99" class="contact-item" target="_blank">
-          <span class="contact-item-icon">⌥</span>
-          <div>
-            <div class="contact-item-label">GitHub</div>
-            <div class="contact-item-val">github.com/nujitha99</div>
-          </div>
-        </a>
-        <a class="contact-item">
-          <span class="contact-item-icon">📍</span>
-          <div>
-            <div class="contact-item-label">Location</div>
-            <div class="contact-item-val">Toronto, ON, Canada</div>
-          </div>
-        </a>
-      </div>
+      <a href="https://doi.org/10.1016/j.ijcip.2026.100830" class="paper-doi" target="_blank">↗ DOI</a>
     </div>
-  </section>
+    <div class="paper-row">
+      <div><div class="paper-venue-badge" style="background:rgba(110,123,255,0.08);color:var(--accent2)">IEEE SysCon · 2025</div></div>
+      <div>
+        <div class="paper-row-title">RF Jamming IDS for Vehicular Networks using LLM</div>
+        <div class="paper-row-summary">BERT for RF jamming detection in VANETs — 95.3% accuracy, 200ms latency. Live PoC with Docker + Streamlit.</div>
+      </div>
+      <a href="https://doi.org/10.1109/SysCon64521.2025.11014799" class="paper-doi" target="_blank">↗ DOI</a>
+    </div>
+    <div class="paper-row">
+      <div><div class="paper-venue-badge" style="background:rgba(255,184,77,0.08);color:var(--warm)">IEEE ASIANCON · 2021</div></div>
+      <div>
+        <div class="paper-row-title">Automated Marketing Campaign Predictions using ML</div>
+        <div class="paper-row-summary">Ensemble decision tree + neural net for ROI prediction — 87% accuracy, end-to-end pipeline with A/B validation.</div>
+      </div>
+      <a href="https://doi.org/10.1109/ASIANCON51346.2021.9544552" class="paper-doi" target="_blank">↗ DOI</a>
+    </div>
+  </div>
+</section>
 
-  <!-- FOOTER -->
-  <footer>
-    <span class="footer-copy">© 2026 NUJITHA W. — BUILT WITH INTENTION</span>
-    <span class="footer-copy">nujithaw@gmail.com</span>
-  </footer>
+<!-- CVs -->
+<section id="cvs" class="section-bg">
+  <div class="sh fu"><span class="sh-num">05 —</span><h2>Pick the right version</h2></div>
+  <p class="fu" style="color:var(--muted);font-weight:300;max-width:520px;margin-bottom:2.5rem;font-size:0.97rem;">
+    Four tailored CVs — each written specifically for that track, not just a reshuffled copy.
+  </p>
+  <div class="cv-grid">
+    <a href="YOUR_BACKEND_CV_LINK" class="cv-card fu" target="_blank">
+      <div class="cv-track">Backend · Cloud</div>
+      <div class="cv-title">Backend Engineer</div>
+      <div class="cv-desc">Java Spring Boot, AWS/GCP/Azure, microservices, CI/CD, 99%+ uptime</div>
+      <div class="cv-arrow">Download PDF →</div>
+    </a>
+    <a href="YOUR_FULLSTACK_CV_LINK" class="cv-card fu" target="_blank" style="transition-delay:0.04s">
+      <div class="cv-track">Full Stack</div>
+      <div class="cv-title">Full Stack Developer</div>
+      <div class="cv-desc">Angular + Spring Boot, REST APIs, responsive UI, ERP at scale</div>
+      <div class="cv-arrow">Download PDF →</div>
+    </a>
+    <a href="YOUR_ML_CV_LINK" class="cv-card fu" target="_blank" style="transition-delay:0.08s">
+      <div class="cv-track">ML · AI</div>
+      <div class="cv-title">ML Engineer</div>
+      <div class="cv-desc">Python, TensorFlow, anomaly detection, published IDS research</div>
+      <div class="cv-arrow">Download PDF →</div>
+    </a>
+    <a href="YOUR_RESEARCH_CV_LINK" class="cv-card fu" target="_blank" style="transition-delay:0.12s">
+      <div class="cv-track">Research · Network</div>
+      <div class="cv-title">Research / Network Eng.</div>
+      <div class="cv-desc">3 IEEE/Elsevier papers, 5G/6G, VANETs, BERT, wireless protocols</div>
+      <div class="cv-arrow">Download PDF →</div>
+    </a>
+  </div>
+</section>
 
-  <script>
-    // Intersection observer for fade-up animations
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add('visible');
-          observer.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.1 });
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-layout">
+    <div class="fu">
+      <div class="sh" style="margin-bottom:1.2rem"><span class="sh-num">06 —</span><h2>Let's talk</h2></div>
+      <p class="contact-intro">
+        Open to <strong>full-time roles</strong> in backend, full-stack, or ML engineering.
+        Also happy to chat about research collaborations or interesting problems.
+        <br><br>
+        I reply within 24 hours. Promise.
+      </p>
+    </div>
+    <div class="contact-cards fu" style="transition-delay:0.1s">
+      <a href="mailto:nujithaw@gmail.com" class="contact-card">
+        <div class="cc-icon">✉</div>
+        <div><div class="cc-label">Email</div><div class="cc-val">nujithaw@gmail.com</div></div>
+      </a>
+      <a href="https://linkedin.com/in/YOUR_LINKEDIN" class="contact-card" target="_blank">
+        <div class="cc-icon" style="font-size:0.75rem;font-weight:700">in</div>
+        <div><div class="cc-label">LinkedIn</div><div class="cc-val">linkedin.com/in/YOUR_LINKEDIN</div></div>
+      </a>
+      <a href="https://github.com/YOUR_GITHUB" class="contact-card" target="_blank">
+        <div class="cc-icon">⌥</div>
+        <div><div class="cc-label">GitHub</div><div class="cc-val">github.com/YOUR_GITHUB</div></div>
+      </a>
+      <a href="tel:9053414610" class="contact-card">
+        <div class="cc-icon">📞</div>
+        <div><div class="cc-label">Phone</div><div class="cc-val">(905) 341-4610</div></div>
+      </a>
+    </div>
+  </div>
+</section>
 
-    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+<footer>
+  <span class="fc">© 2026 NICK (NUJITHA W.)</span>
+  <span class="fc">WATERLOO, ON · OPEN TO WORK</span>
+</footer>
 
-    // Trigger hero immediately
-    setTimeout(() => {
-      document.querySelectorAll('.hero .fade-up').forEach(el => el.classList.add('visible'));
-    }, 100);
-  </script>
+<script>
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('vis'); obs.unobserve(e.target); } });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.fu').forEach(el => obs.observe(el));
+  setTimeout(() => { document.querySelectorAll('.hero .fu').forEach(el => el.classList.add('vis')); }, 80);
+</script>
 </body>
 </html>

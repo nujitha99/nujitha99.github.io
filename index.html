@@ -1,25 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nick (Nujitha W.) — Software Engineer</title>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nujitha W. — Software Engineer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Epilogue:ital,wght@0,300;0,400;0,500;1,300&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Epilogue:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg: #09090b;
-      --bg2: #0d0e11;
-      --surface: #13151a;
-      --surface2: #181b22;
-      --border: #1f2330;
-      --border2: #262d3d;
+      --bg2: #0c0d10;
+      --surface: #111318;
+      --surface2: #161921;
+      --border: #1c1f2b;
+      --border2: #252a3a;
       --accent: #4fffb0;
-      --accent2: #6e7bff;
+      --accent2: #7b8cff;
       --warm: #ffb84d;
-      --text: #e6e8f0;
-      --muted: #636880;
-      --subtle: #2a2f3f;
+      --pink: #ff6b9d;
+      --text: #e4e6f0;
+      --muted: #5e6278;
+      --soft: #9297ad;
+      --subtle: #22273a;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -29,637 +31,894 @@
       background: var(--bg);
       color: var(--text);
       font-family: 'Epilogue', sans-serif;
-      font-size: 16px;
-      line-height: 1.7;
+      font-size: 15.5px;
+      line-height: 1.75;
       overflow-x: hidden;
     }
 
-    body::after {
-      content: '';
-      position: fixed; inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-      opacity: 0.02;
-      pointer-events: none;
-      z-index: 999;
+    /* ── LAYOUT ── */
+    .page {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 2rem;
     }
 
+    /* ── NAV ── */
     nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 1.1rem 3.5rem;
-      background: rgba(9,9,11,0.8);
-      backdrop-filter: blur(16px);
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      background: rgba(9,9,11,0.88);
+      backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--border);
     }
 
+    .nav-inner {
+      max-width: 1100px; margin: 0 auto; padding: 0 2rem;
+      display: flex; justify-content: space-between; align-items: center;
+      height: 58px;
+    }
+
     .nav-logo {
-      font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1rem;
+      font-family: 'Syne', sans-serif; font-weight: 800; font-size: 0.95rem;
       color: var(--text); text-decoration: none; letter-spacing: -0.02em;
     }
     .nav-logo span { color: var(--accent); }
 
-    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links { display: flex; gap: 0.2rem; list-style: none; }
     .nav-links a {
-      font-family: 'DM Mono', monospace; font-size: 0.72rem;
+      font-family: 'DM Mono', monospace; font-size: 0.68rem;
       color: var(--muted); text-decoration: none;
-      letter-spacing: 0.1em; text-transform: uppercase; transition: color 0.2s;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 0.4rem 0.75rem; border-radius: 4px;
+      transition: color 0.2s, background 0.2s;
     }
-    .nav-links a:hover { color: var(--accent); }
+    .nav-links a:hover { color: var(--accent); background: rgba(79,255,176,0.05); }
 
-    /* HERO */
-    .hero {
+    /* ── HERO ── */
+    #hero {
       min-height: 100vh;
-      padding: 9rem 3.5rem 5rem;
+      display: flex; align-items: center;
+      padding: 7rem 0 4rem;
+    }
+
+    .hero-inner {
       display: grid;
-      grid-template-columns: 1fr 420px;
-      gap: 5rem;
+      grid-template-columns: 200px 1fr;
+      gap: 4rem;
       align-items: center;
+      width: 100%;
+    }
+
+    .hero-photo {
+      width: 200px; height: 200px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 2px solid var(--border2);
+      flex-shrink: 0;
+      background: var(--surface);
+      display: flex; align-items: center; justify-content: center;
       position: relative;
     }
 
-    .hero::before {
-      content: '';
-      position: absolute; top: 20%; left: 40%;
-      width: 500px; height: 500px;
-      background: radial-gradient(circle, rgba(78,255,176,0.04) 0%, transparent 70%);
-      pointer-events: none;
+    .hero-photo img {
+      width: 100%; height: 100%;
+      object-fit: cover;
     }
 
-    .hero-eyebrow {
-      display: flex; align-items: center; gap: 0.8rem;
-      font-family: 'DM Mono', monospace; font-size: 0.72rem;
-      color: var(--accent); letter-spacing: 0.18em; text-transform: uppercase;
-      margin-bottom: 1.8rem;
+    .photo-placeholder {
+      width: 100%; height: 100%;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 0.5rem;
+      background: var(--surface2);
     }
-    .hero-eyebrow::before { content: ''; display: block; width: 24px; height: 1px; background: var(--accent); }
 
-    h1 {
+    .photo-placeholder span { font-size: 3rem; }
+    .photo-placeholder p {
+      font-family: 'DM Mono', monospace; font-size: 0.6rem;
+      color: var(--muted); letter-spacing: 0.1em; text-align: center;
+      line-height: 1.4;
+    }
+
+    .hero-text h1 {
       font-family: 'Syne', sans-serif; font-weight: 800;
-      font-size: clamp(3.2rem, 6vw, 5.8rem);
-      line-height: 1.0; letter-spacing: -0.03em; margin-bottom: 1.8rem;
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      letter-spacing: -0.03em; line-height: 1.05;
+      margin-bottom: 0.5rem;
     }
-    h1 .name-accent { color: var(--accent); }
 
-    .hero-desc {
-      font-size: 1.1rem; color: var(--muted); max-width: 520px;
-      margin-bottom: 2.5rem; font-weight: 300; line-height: 1.8;
+    .hero-text h1 span { color: var(--accent); }
+
+    .hero-role {
+      font-family: 'DM Mono', monospace; font-size: 0.78rem;
+      color: var(--muted); letter-spacing: 0.12em; text-transform: uppercase;
+      margin-bottom: 1.4rem;
     }
-    .hero-desc strong { color: var(--text); font-weight: 500; }
 
-    .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .hero-bio {
+      font-size: 1rem; color: var(--soft); font-weight: 300;
+      max-width: 580px; line-height: 1.85; margin-bottom: 2rem;
+    }
+
+    .hero-bio strong { color: var(--text); font-weight: 500; }
+
+    .hero-actions { display: flex; gap: 0.9rem; flex-wrap: wrap; }
 
     .btn {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      padding: 0.75rem 1.5rem;
-      font-family: 'DM Mono', monospace; font-size: 0.73rem;
+      display: inline-flex; align-items: center; gap: 0.45rem;
+      padding: 0.65rem 1.3rem;
+      font-family: 'DM Mono', monospace; font-size: 0.7rem;
       letter-spacing: 0.08em; text-transform: uppercase;
       text-decoration: none; border-radius: 4px; transition: all 0.2s;
-      cursor: pointer; border: none;
+      border: none; cursor: pointer;
     }
     .btn-solid { background: var(--accent); color: #09090b; font-weight: 500; }
-    .btn-solid:hover { background: #7affc4; transform: translateY(-1px); }
+    .btn-solid:hover { background: #7bffca; transform: translateY(-1px); }
     .btn-outline { background: transparent; color: var(--muted); border: 1px solid var(--border2); }
     .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
 
-    .hero-facts { display: flex; flex-direction: column; gap: 1rem; }
+    /* ── SECTION WRAPPER ── */
+    .section {
+      padding: 5rem 0;
+      border-top: 1px solid var(--border);
+    }
 
-    .fact-row {
-      background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
-      padding: 1.2rem 1.5rem; display: flex; align-items: center; gap: 1.2rem;
+    .section-title {
+      font-family: 'Syne', sans-serif; font-weight: 700;
+      font-size: 1.8rem; letter-spacing: -0.02em;
+      margin-bottom: 0.4rem;
+    }
+
+    .section-sub {
+      font-size: 0.88rem; color: var(--muted); font-weight: 300;
+      margin-bottom: 3rem;
+    }
+
+    /* ── ABOUT ── */
+    .about-grid {
+      display: grid; grid-template-columns: 1.4fr 1fr;
+      gap: 4rem; align-items: start;
+    }
+
+    .about-text p {
+      font-size: 0.96rem; color: var(--soft); font-weight: 300;
+      line-height: 1.9; margin-bottom: 1.2rem;
+    }
+    .about-text p strong { color: var(--text); font-weight: 500; }
+    .about-text p a { color: var(--accent); text-decoration: none; }
+    .about-text p a:hover { text-decoration: underline; }
+
+    .about-meta { display: flex; flex-direction: column; gap: 1.5rem; }
+
+    .meta-block h4 {
+      font-family: 'Syne', sans-serif; font-weight: 700;
+      font-size: 0.82rem; letter-spacing: 0.05em;
+      color: var(--text); margin-bottom: 0.8rem;
+      text-transform: uppercase;
+    }
+
+    .meta-list { list-style: none; display: flex; flex-direction: column; gap: 0.45rem; }
+    .meta-list li {
+      font-size: 0.85rem; color: var(--soft); font-weight: 300;
+      display: flex; align-items: flex-start; gap: 0.6rem;
+    }
+    .meta-list li::before { content: '·'; color: var(--accent); flex-shrink: 0; margin-top: 0.05rem; }
+
+    .contact-items { display: flex; flex-direction: column; gap: 0.5rem; }
+    .contact-item {
+      display: flex; align-items: center; gap: 0.6rem;
+      font-size: 0.84rem; color: var(--soft);
+    }
+    .contact-item strong {
+      font-family: 'DM Mono', monospace; font-size: 0.68rem;
+      color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase;
+      min-width: 60px;
+    }
+    .contact-item a { color: var(--accent); text-decoration: none; }
+    .contact-item a:hover { text-decoration: underline; }
+
+    /* Beyond section */
+    .beyond {
+      margin-top: 2.5rem;
+      padding: 2rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      grid-column: 1 / -1;
+    }
+
+    .beyond h3 {
+      font-family: 'Syne', sans-serif; font-weight: 700;
+      font-size: 1rem; margin-bottom: 1rem;
+      color: var(--text);
+    }
+
+    .beyond p {
+      font-size: 0.92rem; color: var(--soft); font-weight: 300;
+      line-height: 1.9;
+    }
+
+    .beyond p strong { color: var(--text); font-weight: 500; }
+
+    /* ── RESUME ── */
+    .resume-cols {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 3.5rem;
+    }
+
+    .resume-block { display: flex; flex-direction: column; gap: 0.1rem; }
+
+    .resume-block h3 {
+      font-family: 'Syne', sans-serif; font-weight: 700;
+      font-size: 1rem; letter-spacing: 0.02em;
+      color: var(--text); margin-bottom: 1.5rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .timeline { display: flex; flex-direction: column; gap: 0; }
+
+    .titem {
+      display: grid;
+      grid-template-columns: 14px 1fr;
+      gap: 0 1.2rem;
+      padding-bottom: 2rem;
+    }
+
+    .titem:last-child { padding-bottom: 0; }
+
+    .tline {
+      display: flex; flex-direction: column; align-items: center;
+      padding-top: 4px;
+    }
+
+    .tdot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: var(--accent);
+      flex-shrink: 0;
+      border: 2px solid var(--bg);
+      outline: 1px solid var(--accent);
+    }
+
+    .tbar {
+      width: 1px; background: var(--border2);
+      flex: 1; margin-top: 4px;
+    }
+
+    .titem:last-child .tbar { display: none; }
+
+    .tcontent { padding-bottom: 0; }
+
+    .tdate {
+      font-family: 'DM Mono', monospace; font-size: 0.65rem;
+      color: var(--muted); letter-spacing: 0.08em;
+      text-transform: uppercase; margin-bottom: 0.3rem;
+    }
+
+    .ttitle {
+      font-family: 'Syne', sans-serif; font-weight: 700;
+      font-size: 0.95rem; margin-bottom: 0.15rem;
+    }
+
+    .tplace {
+      font-size: 0.82rem; color: var(--muted);
+      font-style: italic; margin-bottom: 0.6rem;
+    }
+
+    .tdetails { list-style: none; display: flex; flex-direction: column; gap: 0.3rem; }
+    .tdetails li {
+      font-size: 0.83rem; color: var(--soft); font-weight: 300;
+      display: flex; align-items: flex-start; gap: 0.5rem; line-height: 1.5;
+    }
+    .tdetails li::before { content: '→'; color: var(--accent); font-size: 0.7rem; flex-shrink: 0; margin-top: 0.1rem; }
+
+    .tbadge {
+      display: inline-block;
+      font-family: 'DM Mono', monospace; font-size: 0.62rem;
+      padding: 0.2rem 0.55rem; border-radius: 3px;
+      background: var(--subtle); color: var(--muted);
+      letter-spacing: 0.05em; margin-top: 0.5rem;
+    }
+
+    /* ── AWARDS ── */
+    .awards-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+    }
+
+    .award-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 8px; padding: 1.5rem;
+      display: flex; gap: 1.2rem; align-items: flex-start;
       transition: border-color 0.2s;
     }
-    .fact-row:hover { border-color: var(--border2); }
+    .award-card:hover { border-color: var(--warm); }
 
-    .fact-icon {
-      width: 36px; height: 36px; border-radius: 6px; background: var(--subtle);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1rem; flex-shrink: 0;
+    .award-icon {
+      font-size: 1.5rem; flex-shrink: 0; margin-top: 0.1rem;
     }
-    .fact-label { font-family: 'DM Mono', monospace; font-size: 0.68rem; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.15rem; }
-    .fact-val { font-size: 0.92rem; font-weight: 500; }
 
-    /* SECTIONS */
-    section { padding: 6rem 3.5rem; position: relative; z-index: 1; }
-    .section-bg { background: var(--bg2); }
-
-    .sh { display: flex; align-items: baseline; gap: 1.2rem; margin-bottom: 3.5rem; }
-    .sh-num { font-family: 'DM Mono', monospace; font-size: 0.68rem; color: var(--muted); letter-spacing: 0.15em; }
-
-    h2 {
+    .award-name {
       font-family: 'Syne', sans-serif; font-weight: 700;
-      font-size: clamp(1.8rem, 3.5vw, 2.6rem); letter-spacing: -0.02em;
+      font-size: 0.92rem; margin-bottom: 0.25rem;
     }
 
-    /* WHAT I DO */
-    .tracks-grid {
-      display: grid; grid-template-columns: repeat(4, 1fr);
-      gap: 1px; background: var(--border);
-      border: 1px solid var(--border); border-radius: 10px; overflow: hidden;
-    }
-    .track-col {
-      background: var(--surface); padding: 2.5rem 2rem;
-      transition: background 0.2s;
-    }
-    .track-col:hover { background: var(--surface2); }
-    .track-dot { width: 10px; height: 10px; border-radius: 50%; margin-bottom: 1.5rem; }
-    .track-heading { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; margin-bottom: 0.6rem; }
-    .track-body { font-size: 0.85rem; color: var(--muted); font-weight: 300; line-height: 1.6; margin-bottom: 1.2rem; }
-    .track-stack { display: flex; flex-wrap: wrap; gap: 0.4rem; }
-
-    .chip {
+    .award-org {
       font-family: 'DM Mono', monospace; font-size: 0.65rem;
-      padding: 0.25rem 0.6rem; background: var(--subtle); color: var(--muted);
+      color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase;
+      margin-bottom: 0.4rem;
+    }
+
+    .award-desc { font-size: 0.82rem; color: var(--soft); font-weight: 300; line-height: 1.55; }
+
+    /* ── PUBLICATIONS ── */
+    .pub-list { display: flex; flex-direction: column; gap: 1.2rem; }
+
+    .pub-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-left: 3px solid var(--accent2);
+      border-radius: 8px; padding: 1.8rem 2rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .pub-card:hover { transform: translateX(4px); border-color: var(--accent2); }
+
+    .pub-venue {
+      font-family: 'DM Mono', monospace; font-size: 0.65rem;
+      color: var(--accent2); letter-spacing: 0.1em; text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+
+    .pub-title {
+      font-family: 'Syne', sans-serif; font-weight: 700;
+      font-size: 1rem; margin-bottom: 0.4rem; line-height: 1.4;
+    }
+
+    .pub-summary {
+      font-size: 0.84rem; color: var(--soft); font-weight: 300;
+      line-height: 1.7; margin-bottom: 0.9rem;
+    }
+
+    .pub-footer { display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; }
+
+    .pub-tags { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+    .pub-tag {
+      font-family: 'DM Mono', monospace; font-size: 0.62rem;
+      padding: 0.2rem 0.55rem; background: var(--subtle);
+      color: var(--muted); border-radius: 3px; letter-spacing: 0.04em;
+    }
+
+    .pub-doi {
+      font-family: 'DM Mono', monospace; font-size: 0.65rem;
+      color: var(--muted); text-decoration: none; margin-left: auto;
+      transition: color 0.2s;
+    }
+    .pub-doi:hover { color: var(--accent); }
+
+    /* ── VOLUNTEER ── */
+    .vol-list { display: flex; flex-direction: column; gap: 1.2rem; }
+
+    .vol-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 8px; padding: 1.5rem 2rem;
+      display: grid; grid-template-columns: 1fr auto;
+      gap: 1rem; align-items: start;
+      transition: border-color 0.2s;
+    }
+    .vol-card:hover { border-color: var(--border2); }
+
+    .vol-role {
+      font-family: 'Syne', sans-serif; font-weight: 700;
+      font-size: 0.95rem; margin-bottom: 0.2rem;
+    }
+
+    .vol-org {
+      font-family: 'DM Mono', monospace; font-size: 0.65rem;
+      color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase;
+      margin-bottom: 0.6rem;
+    }
+
+    .vol-desc { font-size: 0.84rem; color: var(--soft); font-weight: 300; line-height: 1.6; }
+
+    .vol-date {
+      font-family: 'DM Mono', monospace; font-size: 0.65rem;
+      color: var(--muted); letter-spacing: 0.06em; white-space: nowrap;
+    }
+
+    /* ── SKILLS ── */
+    .skills-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .skill-block {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 8px; padding: 1.5rem;
+    }
+
+    .skill-block h4 {
+      font-family: 'Syne', sans-serif; font-weight: 700;
+      font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.06em;
+      color: var(--text); margin-bottom: 1rem;
+    }
+
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .skill-tag {
+      font-family: 'DM Mono', monospace; font-size: 0.65rem;
+      padding: 0.3rem 0.7rem;
+      background: var(--subtle); color: var(--soft);
       border-radius: 3px; letter-spacing: 0.04em;
     }
 
-    /* HOW I WORK */
-    .work-grid {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 3rem; align-items: start;
-    }
-
-    .work-intro {
-      font-size: 1.05rem; color: var(--muted); font-weight: 300;
-      line-height: 1.9; margin-bottom: 2rem;
-    }
-    .work-intro strong { color: var(--text); font-weight: 500; }
-
-    .work-quote {
-      border-left: 2px solid var(--accent);
-      padding: 1rem 1.5rem;
-      background: var(--surface);
-      border-radius: 0 6px 6px 0;
-      font-style: italic;
-      color: var(--muted);
-      font-size: 0.95rem;
-      line-height: 1.7;
-    }
-    .work-quote cite {
-      display: block; margin-top: 0.6rem; font-style: normal;
-      font-family: 'DM Mono', monospace; font-size: 0.68rem;
-      color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase;
-    }
-
-    .traits { display: flex; flex-direction: column; gap: 0.9rem; }
-
-    .trait {
-      background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
-      padding: 1.3rem 1.5rem; display: flex; gap: 1.2rem; align-items: flex-start;
-      transition: border-color 0.2s, transform 0.2s;
-    }
-    .trait:hover { border-color: var(--border2); transform: translateX(4px); }
-    .trait-emoji { font-size: 1.2rem; flex-shrink: 0; margin-top: 0.1rem; }
-    .trait-name { font-family: 'Syne', sans-serif; font-weight: 600; font-size: 0.92rem; margin-bottom: 0.2rem; }
-    .trait-desc { font-size: 0.83rem; color: var(--muted); font-weight: 300; line-height: 1.5; }
-
-    /* PROJECTS */
-    .projects-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.2rem;
-    }
-
-    .project-card {
-      background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
-      padding: 1.8rem; display: flex; flex-direction: column;
-      transition: border-color 0.2s, transform 0.2s;
-    }
-    .project-card:hover { border-color: var(--accent2); transform: translateY(-2px); }
-
-    .project-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem; }
-    .project-icon { width: 38px; height: 38px; background: var(--subtle); border-radius: 7px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; }
-    .project-type { font-family: 'DM Mono', monospace; font-size: 0.63rem; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; }
-    .project-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.02rem; margin-bottom: 0.6rem; }
-    .project-desc { font-size: 0.85rem; color: var(--muted); font-weight: 300; flex: 1; margin-bottom: 1.2rem; line-height: 1.6; }
-    .project-stack { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 1rem; }
-    .project-links { display: flex; gap: 0.7rem; }
-
-    .plink {
-      font-family: 'DM Mono', monospace; font-size: 0.65rem; color: var(--muted);
-      text-decoration: none; letter-spacing: 0.08em; text-transform: uppercase;
-      border: 1px solid var(--border); padding: 0.3rem 0.75rem; border-radius: 3px;
-      transition: all 0.2s;
-    }
-    .plink:hover { border-color: var(--accent2); color: var(--accent2); }
-
-    /* RESEARCH compact */
-    .papers-compact {
-      display: flex; flex-direction: column; gap: 1px;
-      background: var(--border); border: 1px solid var(--border);
-      border-radius: 10px; overflow: hidden;
-    }
-
-    .paper-row {
-      background: var(--surface); padding: 1.8rem 2.2rem;
-      display: grid; grid-template-columns: 140px 1fr auto;
-      gap: 2rem; align-items: center; transition: background 0.2s;
-    }
-    .paper-row:hover { background: var(--surface2); }
-
-    .paper-venue-badge {
-      font-family: 'DM Mono', monospace; font-size: 0.65rem;
-      letter-spacing: 0.1em; text-transform: uppercase;
-      padding: 0.3rem 0.7rem; border-radius: 3px; text-align: center;
-    }
-    .paper-row-title { font-family: 'Syne', sans-serif; font-weight: 600; font-size: 0.95rem; margin-bottom: 0.3rem; }
-    .paper-row-summary { font-size: 0.82rem; color: var(--muted); font-weight: 300; }
-    .paper-doi {
-      font-family: 'DM Mono', monospace; font-size: 0.65rem; color: var(--muted);
-      text-decoration: none; white-space: nowrap; transition: color 0.2s;
-    }
-    .paper-doi:hover { color: var(--accent); }
-
-    /* CVs */
-    .cv-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; }
-
-    .cv-card {
-      background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
-      padding: 1.8rem; text-decoration: none; color: inherit;
-      transition: all 0.2s; display: flex; flex-direction: column; gap: 0.5rem;
-    }
-    .cv-card:hover { border-color: var(--accent); transform: translateY(-2px); }
-    .cv-track { font-family: 'DM Mono', monospace; font-size: 0.65rem; color: var(--accent); letter-spacing: 0.12em; text-transform: uppercase; }
-    .cv-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.05rem; }
-    .cv-desc { font-size: 0.82rem; color: var(--muted); font-weight: 300; }
-    .cv-arrow { margin-top: auto; padding-top: 1rem; font-family: 'DM Mono', monospace; font-size: 0.68rem; color: var(--muted); }
-
-    /* CONTACT */
-    .contact-layout { display: grid; grid-template-columns: 1fr 1.2fr; gap: 5rem; align-items: center; }
-    .contact-intro { font-size: 1rem; color: var(--muted); font-weight: 300; line-height: 1.9; }
-    .contact-intro strong { color: var(--text); font-weight: 500; }
-    .contact-cards { display: flex; flex-direction: column; gap: 0.9rem; }
-
-    .contact-card {
-      display: flex; align-items: center; gap: 1.2rem;
-      padding: 1.1rem 1.5rem;
-      background: var(--surface); border: 1px solid var(--border); border-radius: 7px;
-      text-decoration: none; color: var(--text); transition: all 0.2s;
-    }
-    .contact-card:hover { border-color: var(--accent); color: var(--accent); }
-    .cc-icon { width: 34px; height: 34px; background: var(--subtle); border-radius: 5px; display: flex; align-items: center; justify-content: center; font-size: 0.95rem; flex-shrink: 0; }
-    .cc-label { font-family: 'DM Mono', monospace; font-size: 0.63rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; }
-    .cc-val { font-size: 0.9rem; font-weight: 500; }
-
+    /* ── FOOTER ── */
     footer {
-      padding: 1.8rem 3.5rem; border-top: 1px solid var(--border);
+      padding: 2rem 0; border-top: 1px solid var(--border);
       display: flex; justify-content: space-between; align-items: center;
     }
-    .fc { font-family: 'DM Mono', monospace; font-size: 0.65rem; color: var(--subtle); letter-spacing: 0.08em; }
+    .fc { font-family: 'DM Mono', monospace; font-size: 0.62rem; color: var(--muted); letter-spacing: 0.08em; }
 
-    /* FADE */
-    .fu { opacity: 0; transform: translateY(20px); transition: opacity 0.55s ease, transform 0.55s ease; }
-    .fu.vis { opacity: 1; transform: translateY(0); }
+    /* ── FADE ── */
+    .fu { opacity: 0; transform: translateY(18px); transition: opacity 0.5s ease, transform 0.5s ease; }
+    .fu.vis { opacity: 1; transform: none; }
 
-    @media (max-width: 1100px) { .tracks-grid { grid-template-columns: repeat(2, 1fr); } }
+    /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
-      nav { padding: 1rem 2rem; }
-      .hero { grid-template-columns: 1fr; padding: 7rem 2rem 4rem; min-height: auto; }
-      .hero-facts { display: none; }
-      section { padding: 4rem 2rem; }
-      .work-grid, .contact-layout { grid-template-columns: 1fr; gap: 2.5rem; }
-      .paper-row { grid-template-columns: 1fr; gap: 0.6rem; }
-      .paper-doi { display: none; }
-      footer { flex-direction: column; gap: 0.4rem; padding: 1.5rem 2rem; }
+      .nav-links { display: none; }
+      .hero-inner { grid-template-columns: 1fr; text-align: center; }
+      .hero-photo { margin: 0 auto; }
+      .hero-actions { justify-content: center; }
+      .about-grid, .resume-cols { grid-template-columns: 1fr; gap: 2.5rem; }
+      .beyond { grid-column: 1; }
+      .skills-grid { grid-template-columns: 1fr 1fr; }
+      .vol-card { grid-template-columns: 1fr; }
     }
     @media (max-width: 600px) {
-      .nav-links { display: none; }
-      .tracks-grid { grid-template-columns: 1fr; }
+      .skills-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
 
+<!-- NAV -->
 <nav>
-  <a class="nav-logo" href="#">Nick<span>.</span></a>
-  <ul class="nav-links">
-    <li><a href="#what">What I Do</a></li>
-    <li><a href="#how">How I Work</a></li>
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="#research">Research</a></li>
-    <li><a href="#cvs">CVs</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
+  <div class="nav-inner">
+    <a class="nav-logo" href="#hero">Nujitha<span>.</span></a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#resume">Résumé</a></li>
+      <li><a href="#publications">Publications</a></li>
+      <li><a href="#awards">Awards</a></li>
+      <li><a href="#volunteer">Volunteer</a></li>
+    </ul>
+  </div>
 </nav>
 
-<div class="hero">
-  <div class="hero-left fu">
-    <div class="hero-eyebrow">Software Engineer · Waterloo, ON</div>
-    <h1>I build<br>things that<br><span class="name-accent">hold up.</span></h1>
-    <p class="hero-desc">
-      3+ years shipping <strong>production systems</strong> — microservices, ML pipelines, full-stack apps.
-      I care about code that's readable, systems that don't break at 2am,
-      and teams that actually work well together.
-    </p>
-    <div class="hero-cta">
-      <a href="https://github.com/YOUR_GITHUB" class="btn btn-solid" target="_blank">↗ GitHub</a>
-      <a href="https://linkedin.com/in/YOUR_LINKEDIN" class="btn btn-outline" target="_blank">LinkedIn</a>
-      <a href="mailto:nujithaw@gmail.com" class="btn btn-outline">Email Me</a>
-    </div>
-  </div>
-  <div class="hero-facts fu" style="transition-delay:0.12s">
-    <div class="fact-row">
-      <div class="fact-icon">🏗️</div>
-      <div><div class="fact-label">Experience</div><div class="fact-val">3+ years, production systems</div></div>
-    </div>
-    <div class="fact-row">
-      <div class="fact-icon">🌐</div>
-      <div><div class="fact-label">Cloud</div><div class="fact-val">AWS · GCP · Azure</div></div>
-    </div>
-    <div class="fact-row">
-      <div class="fact-icon">📄</div>
-      <div><div class="fact-label">Research</div><div class="fact-val">3 papers — IEEE · Elsevier</div></div>
-    </div>
-    <div class="fact-row">
-      <div class="fact-icon">🎓</div>
-      <div><div class="fact-label">Education</div><div class="fact-val">MSc Computer Science, 95% · Brock</div></div>
-    </div>
-    <div class="fact-row">
-      <div class="fact-icon">📍</div>
-      <div><div class="fact-label">Location</div><div class="fact-val">Waterloo, ON — open to hybrid/remote</div></div>
-    </div>
-  </div>
-</div>
-
-<!-- WHAT I DO -->
-<section id="what" class="section-bg">
-  <div class="sh fu"><span class="sh-num">01 —</span><h2>What I do</h2></div>
-  <div class="tracks-grid fu" style="transition-delay:0.08s">
-    <div class="track-col">
-      <div class="track-dot" style="background:#4fffb0"></div>
-      <div class="track-heading">Backend &amp; Cloud</div>
-      <p class="track-body">Microservices, REST APIs, CI/CD pipelines. Built systems handling 10k+ daily transactions across 100+ global clients with 99%+ uptime.</p>
-      <div class="track-stack">
-        <span class="chip">Java Spring Boot</span><span class="chip">AWS</span><span class="chip">Docker</span><span class="chip">Kubernetes</span><span class="chip">Jenkins</span>
+<!-- HERO -->
+<div class="page">
+<section id="hero">
+  <div class="hero-inner">
+    <div class="hero-photo fu">
+      <!-- Replace src with your photo: <img src="assets/profile.jpg" alt="Nick"> -->
+      <div class="photo-placeholder">
+        <span>👤</span>
+        <p>Add your<br>photo here</p>
       </div>
     </div>
-    <div class="track-col">
-      <div class="track-dot" style="background:#6e7bff"></div>
-      <div class="track-heading">Full Stack</div>
-      <p class="track-body">Angular frontends to Spring Boot backends, end-to-end. Responsive, accessible UIs for ERP systems used across airports and defence clients.</p>
-      <div class="track-stack">
-        <span class="chip">Angular</span><span class="chip">TypeScript</span><span class="chip">.NET</span><span class="chip">PostgreSQL</span><span class="chip">Redis</span>
-      </div>
-    </div>
-    <div class="track-col">
-      <div class="track-dot" style="background:#ffb84d"></div>
-      <div class="track-heading">ML Engineering</div>
-      <p class="track-body">End-to-end ML pipelines — data preprocessing to model deployment. Specialised in anomaly detection and network security with published outcomes.</p>
-      <div class="track-stack">
-        <span class="chip">Python</span><span class="chip">TensorFlow</span><span class="chip">scikit-learn</span><span class="chip">PyTorch</span><span class="chip">BERT</span>
-      </div>
-    </div>
-    <div class="track-col">
-      <div class="track-dot" style="background:#ff6b9d"></div>
-      <div class="track-heading">DevOps &amp; Infra</div>
-      <p class="track-body">Zero-downtime deployments, blue-green strategies, automated testing. Reduced deployment cycles across multi-environment cloud releases.</p>
-      <div class="track-stack">
-        <span class="chip">GitLab CI/CD</span><span class="chip">Terraform</span><span class="chip">Linux</span><span class="chip">Bash</span><span class="chip">ELK</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- HOW I WORK -->
-<section id="how">
-  <div class="sh fu"><span class="sh-num">02 —</span><h2>How I work</h2></div>
-  <div class="work-grid">
-    <div>
-      <p class="work-intro fu">
-        I've shipped code in <strong>globally distributed Agile teams</strong>, mentored students 1-on-1, and judged engineering competitions. That range shapes how I show up — I give honest code reviews, explain things clearly, and don't disappear when something breaks in prod.
+    <div class="hero-text fu" style="transition-delay:0.1s">
+      <div class="hero-role">Software Engineer · Researcher · Toronto, ON</div>
+      <h1>Nujitha W.</h1>
+      <p class="hero-bio">
+        Backend engineer and ML researcher with <strong>3+ years</strong> building production systems and published work in network security. I care about code that lasts, teams that communicate, and problems worth solving.
       </p>
-      <div class="work-quote fu" style="transition-delay:0.08s">
-        At IFS I was working across time zones — Sri Lanka and Europe simultaneously. That'll teach you fast how to communicate clearly, document properly, and not block others on your work.
-        <cite>— on distributed collaboration</cite>
-      </div>
-    </div>
-    <div class="traits fu" style="transition-delay:0.1s">
-      <div class="trait">
-        <div class="trait-emoji">🤝</div>
-        <div>
-          <div class="trait-name">Team-first, not ego-first</div>
-          <div class="trait-desc">Regular code reviews and pair programming at IFS across cross-functional Agile sprints. I care about what the team ships, not who gets credit.</div>
-        </div>
-      </div>
-      <div class="trait">
-        <div class="trait-emoji">🧑‍🏫</div>
-        <div>
-          <div class="trait-name">I explain things well</div>
-          <div class="trait-desc">Teaching Assistant at Brock — led labs for 20+ students, 1-on-1 debugging sessions. If I understand something, I can make someone else understand it too.</div>
-        </div>
-      </div>
-      <div class="trait">
-        <div class="trait-emoji">🏆</div>
-        <div>
-          <div class="trait-name">I take ownership</div>
-          <div class="trait-desc">Handled production incident management at IFS — root cause analysis, fix deployment, postmortem. I don't wait around for someone else to take the lead.</div>
-        </div>
-      </div>
-      <div class="trait">
-        <div class="trait-emoji">🤖</div>
-        <div>
-          <div class="trait-name">Genuinely multi-disciplinary</div>
-          <div class="trait-desc">Judge at FIRST Ontario Robotics Championships — evaluating autonomous systems and engineering rigour from student teams. I bring the same cross-domain thinking to my work.</div>
-        </div>
-      </div>
-      <div class="trait">
-        <div class="trait-emoji">🌍</div>
-        <div>
-          <div class="trait-name">Adapts fast, asks smart questions</div>
-          <div class="trait-desc">Moved contexts — Sri Lanka → UK → Canada across different engineering cultures. I get up to speed without hand-holding and ask the right questions early.</div>
-        </div>
+      <div class="hero-actions">
+        <a href="YOUR_CV_LINK.pdf" class="btn btn-solid" download>↓ Download CV</a>
+        <a href="/cdn-cgi/l/email-protection#f59b809f9c819d9482b59298949c99db969a98" class="btn btn-outline">✉ Email Me</a>
+        <a href="https://linkedin.com/in/YOUR_LINKEDIN" class="btn btn-outline" target="_blank">LinkedIn</a>
+        <a href="https://github.com/YOUR_GITHUB" class="btn btn-outline" target="_blank">GitHub</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- PROJECTS -->
-<section id="projects" class="section-bg">
-  <div class="sh fu"><span class="sh-num">03 —</span><h2>Projects</h2></div>
-  <div class="projects-grid">
-
-    <div class="project-card fu">
-      <div class="project-top">
-        <div class="project-icon">🛡️</div>
-        <span class="project-type">ML · Security</span>
-      </div>
-      <div class="project-title">Transformer RF Jamming Detector</div>
-      <p class="project-desc">Compared BERT, RoBERTa, DistilBERT, ALBERT for RF jamming in VANETs. DistilBERT ran 59% faster than BERT with comparable accuracy — deployed live via Streamlit + Docker.</p>
-      <div class="project-stack"><span class="chip">PyTorch</span><span class="chip">BERT</span><span class="chip">Docker</span><span class="chip">Streamlit</span></div>
-      <div class="project-links">
-        <a href="#" class="plink">↗ GitHub</a>
-        <a href="https://doi.org/10.1109/SysCon64521.2025.11014799" class="plink" target="_blank">↗ Paper</a>
-      </div>
-    </div>
-
-    <div class="project-card fu" style="transition-delay:0.04s">
-      <div class="project-top">
-        <div class="project-icon">🔐</div>
-        <span class="project-type">ML · IoT · 6G</span>
-      </div>
-      <div class="project-title">Continuous Auth for IoT &amp; 6G</div>
-      <p class="project-desc">LSTM and Attention-LSTM for zero-trust continuous authentication using smartphone sensors. Lightweight enough for edge devices — 87% accuracy on a 60-user dataset.</p>
-      <div class="project-stack"><span class="chip">TensorFlow</span><span class="chip">LSTM</span><span class="chip">Python</span><span class="chip">6G</span></div>
-      <div class="project-links">
-        <a href="#" class="plink">↗ GitHub</a>
-        <a href="#" class="plink">↗ Report</a>
-      </div>
-    </div>
-
-    <div class="project-card fu" style="transition-delay:0.08s">
-      <div class="project-top">
-        <div class="project-icon">☁️</div>
-        <span class="project-type">Cloud · Security</span>
-      </div>
-      <div class="project-title">Cloud Network IDS</div>
-      <p class="project-desc">Distributed IDS with convolutional autoencoders on NSL-KDD. Multi-node setup on AWS EC2 with Docker + ELK stack — resilient to 15% packet loss.</p>
-      <div class="project-stack"><span class="chip">PyTorch</span><span class="chip">AWS EC2</span><span class="chip">Docker</span><span class="chip">ELK</span></div>
-      <div class="project-links"><a href="#" class="plink">↗ GitHub</a></div>
-    </div>
-
-    <div class="project-card fu" style="transition-delay:0.12s">
-      <div class="project-top">
-        <div class="project-icon">🔑</div>
-        <span class="project-type">Cryptography · 5G</span>
-      </div>
-      <div class="project-title">Post-Quantum Crypto for 5G/6G</div>
-      <p class="project-desc">McEliece cryptosystem with Goppa codes for quantum-resistant wireless encryption. Evaluated NIST PQC candidates (BIKE, QC-MDPC) — analysed security vs efficiency trade-offs.</p>
-      <div class="project-stack"><span class="chip">Python</span><span class="chip">Post-Quantum</span><span class="chip">3GPP</span></div>
-      <div class="project-links"><a href="#" class="plink">↗ Report</a></div>
-    </div>
-
-    <div class="project-card fu" style="transition-delay:0.16s">
-      <div class="project-top">
-        <div class="project-icon">📡</div>
-        <span class="project-type">Algorithms · Networking</span>
-      </div>
-      <div class="project-title">Network Optimisation via Graph Algorithms</div>
-      <p class="project-desc">Ford-Fulkerson max flow using JGraphT — applicable to wireless mesh routing and satellite constellation management. Graph-based code bounds with backtracking optimisation.</p>
-      <div class="project-stack"><span class="chip">Java</span><span class="chip">JGraphT</span><span class="chip">Algorithms</span></div>
-      <div class="project-links"><a href="#" class="plink">↗ GitHub</a></div>
-    </div>
-
-    <div class="project-card fu" style="transition-delay:0.2s">
-      <div class="project-top">
-        <div class="project-icon">🧠</div>
-        <span class="project-type">Deep Learning · Signal</span>
-      </div>
-      <div class="project-title">VAE Signal Super-Resolution</div>
-      <p class="project-desc">Variational Autoencoder with perceptual loss functions for super-resolution in PyTorch. Techniques directly applicable to signal compression in wireless communications.</p>
-      <div class="project-stack"><span class="chip">PyTorch</span><span class="chip">VAE</span><span class="chip">Python</span></div>
-      <div class="project-links"><a href="#" class="plink">↗ GitHub</a></div>
-    </div>
-
+<!-- ABOUT -->
+<section class="section" id="about">
+  <div class="fu">
+    <div class="section-title">About</div>
+    <div class="section-sub">A little about who I am and what drives me</div>
   </div>
-</section>
-
-<!-- RESEARCH -->
-<section id="research">
-  <div class="sh fu"><span class="sh-num">04 —</span><h2>Published research</h2></div>
-  <div class="papers-compact fu">
-    <div class="paper-row">
-      <div><div class="paper-venue-badge" style="background:rgba(78,255,176,0.08);color:var(--accent)">Elsevier IJCIP · 2026</div></div>
-      <div>
-        <div class="paper-row-title">ML and Meta-Model Approaches for Intrusion Detection</div>
-        <div class="paper-row-summary">LSTM + XGBoost ensemble — 96.2% accuracy on NSL-KDD/CICIDS2017. Applicable to 5G core network security.</div>
-      </div>
-      <a href="https://doi.org/10.1016/j.ijcip.2026.100830" class="paper-doi" target="_blank">↗ DOI</a>
+  <div class="about-grid">
+    <div class="about-text fu">
+      <p>
+        Hey, I'm Nujitha — a software engineer with a research edge,
+        currently based in Toronto, Ontario. I hold an <strong>MSc in Computer Science from Brock University</strong> (95%)
+        and a <strong>First Class BEng in Software Engineering from the University of Westminster</strong>, London.
+      </p>
+      <p>
+        My engineering background spans production backend systems at <strong>IFS</strong> — building microservices for Aviation & Defence ERP platforms serving 100+ global clients —
+        and real-time airline operations software at <strong>Avtra</strong>, deployed across international airports.
+        I've worked across the full stack: Java Spring Boot backends, Angular frontends, cloud deployments on AWS/GCP/Azure, and CI/CD automation end-to-end.
+      </p>
+      <p>
+        Alongside engineering, I've done genuine research at <strong>Brock University</strong> — building ML-based intrusion detection systems
+        for vehicular networks, publishing three peer-reviewed papers in IEEE and Elsevier venues,
+        and presenting at international conferences. My work sits at the intersection of security, distributed systems, and applied ML.
+        Not all engineers publish. I happen to do both.
+      </p>
+      <p>
+        I've also taught. As a <strong>Teaching Assistant</strong> at Brock, I ran lab sessions, gave 1-on-1 debugging help,
+        and explained hard things to people who were stuck. That's a skill I bring into teams too —
+        I write clear docs, give useful code reviews, and don't hoard knowledge.
+      </p>
     </div>
-    <div class="paper-row">
-      <div><div class="paper-venue-badge" style="background:rgba(110,123,255,0.08);color:var(--accent2)">IEEE SysCon · 2025</div></div>
-      <div>
-        <div class="paper-row-title">RF Jamming IDS for Vehicular Networks using LLM</div>
-        <div class="paper-row-summary">BERT for RF jamming detection in VANETs — 95.3% accuracy, 200ms latency. Live PoC with Docker + Streamlit.</div>
-      </div>
-      <a href="https://doi.org/10.1109/SysCon64521.2025.11014799" class="paper-doi" target="_blank">↗ DOI</a>
-    </div>
-    <div class="paper-row">
-      <div><div class="paper-venue-badge" style="background:rgba(255,184,77,0.08);color:var(--warm)">IEEE ASIANCON · 2021</div></div>
-      <div>
-        <div class="paper-row-title">Automated Marketing Campaign Predictions using ML</div>
-        <div class="paper-row-summary">Ensemble decision tree + neural net for ROI prediction — 87% accuracy, end-to-end pipeline with A/B validation.</div>
-      </div>
-      <a href="https://doi.org/10.1109/ASIANCON51346.2021.9544552" class="paper-doi" target="_blank">↗ DOI</a>
-    </div>
-  </div>
-</section>
 
-<!-- CVs -->
-<section id="cvs" class="section-bg">
-  <div class="sh fu"><span class="sh-num">05 —</span><h2>Pick the right version</h2></div>
-  <p class="fu" style="color:var(--muted);font-weight:300;max-width:520px;margin-bottom:2.5rem;font-size:0.97rem;">
-    Four tailored CVs — each written specifically for that track, not just a reshuffled copy.
-  </p>
-  <div class="cv-grid">
-    <a href="YOUR_BACKEND_CV_LINK" class="cv-card fu" target="_blank">
-      <div class="cv-track">Backend · Cloud</div>
-      <div class="cv-title">Backend Engineer</div>
-      <div class="cv-desc">Java Spring Boot, AWS/GCP/Azure, microservices, CI/CD, 99%+ uptime</div>
-      <div class="cv-arrow">Download PDF →</div>
-    </a>
-    <a href="YOUR_FULLSTACK_CV_LINK" class="cv-card fu" target="_blank" style="transition-delay:0.04s">
-      <div class="cv-track">Full Stack</div>
-      <div class="cv-title">Full Stack Developer</div>
-      <div class="cv-desc">Angular + Spring Boot, REST APIs, responsive UI, ERP at scale</div>
-      <div class="cv-arrow">Download PDF →</div>
-    </a>
-    <a href="YOUR_ML_CV_LINK" class="cv-card fu" target="_blank" style="transition-delay:0.08s">
-      <div class="cv-track">ML · AI</div>
-      <div class="cv-title">ML Engineer</div>
-      <div class="cv-desc">Python, TensorFlow, anomaly detection, published IDS research</div>
-      <div class="cv-arrow">Download PDF →</div>
-    </a>
-    <a href="YOUR_RESEARCH_CV_LINK" class="cv-card fu" target="_blank" style="transition-delay:0.12s">
-      <div class="cv-track">Research · Network</div>
-      <div class="cv-title">Research / Network Eng.</div>
-      <div class="cv-desc">3 IEEE/Elsevier papers, 5G/6G, VANETs, BERT, wireless protocols</div>
-      <div class="cv-arrow">Download PDF →</div>
-    </a>
-  </div>
-</section>
+    <div class="about-meta fu" style="transition-delay:0.1s">
+      <div class="meta-block">
+        <h4>Contact</h4>
+        <div class="contact-items">
+          <div class="contact-item"><strong>City</strong> Toronto, ON, Canada</div>
+          <div class="contact-item"><strong>Email</strong> <a href="/cdn-cgi/l/email-protection#254b504f4c514d4452654248444c490b464a48"><span class="__cf_email__" data-cfemail="68061d02011c00091f280f05090104460b0705">[email&#160;protected]</span></a></div>
+          <div class="contact-item"><strong>Phone</strong> (905) 341-4610</div>
+          <div class="contact-item"><strong>LinkedIn</strong> <a href="https://linkedin.com/in/YOUR_LINKEDIN" target="_blank">View Profile</a></div>
+          <div class="contact-item"><strong>GitHub</strong> <a href="https://github.com/YOUR_GITHUB" target="_blank">View Profile</a></div>
+        </div>
+      </div>
 
-<!-- CONTACT -->
-<section id="contact">
-  <div class="contact-layout">
-    <div class="fu">
-      <div class="sh" style="margin-bottom:1.2rem"><span class="sh-num">06 —</span><h2>Let's talk</h2></div>
-      <p class="contact-intro">
-        Open to <strong>full-time roles</strong> in backend, full-stack, or ML engineering.
-        Also happy to chat about research collaborations or interesting problems.
+      <div class="meta-block">
+        <h4>Engineering Interests</h4>
+        <ul class="meta-list">
+          <li>Distributed systems & microservice architecture</li>
+          <li>Backend engineering & cloud infrastructure</li>
+          <li>ML engineering & anomaly detection</li>
+          <li>Network security & intrusion detection</li>
+          <li>DevOps, CI/CD & zero-downtime deployment</li>
+        </ul>
+      </div>
+
+      <div class="meta-block">
+        <h4>Research Interests</h4>
+        <ul class="meta-list">
+          <li>AI/ML for network security (6G, VANETs)</li>
+          <li>RF jamming detection with LLMs</li>
+          <li>Post-quantum cryptography</li>
+          <li>Intrusion detection systems</li>
+          <li>Wireless protocol security</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- BEYOND -->
+    <div class="beyond fu" style="transition-delay:0.15s">
+      <h3>Beyond Work 🙂</h3>
+      <p>
+        When I'm not in a codebase or writing up research, you'll find me on a badminton court 🏸.
+        I've been playing competitively for years and I take it seriously — it's one of the few things
+        that demands the same kind of focus and quick decision-making as engineering, just with more running involved.
         <br><br>
-        I reply within 24 hours. Promise.
+        I also travel whenever I can 🌍. I've lived across Sri Lanka 🇱🇰, the UK 🇬🇧, and Canada 🇨🇦,
+        and each move has genuinely changed how I think — about people, about communication, and about
+        what "normal" actually means. There's something about navigating new places that keeps you curious
+        and a little bit humble, which I think makes you a better engineer too.
+        <br><br>
+        If you want to talk tech, research, travel recommendations, or debate shuttle speed preferences — I'm always up for it.
       </p>
-    </div>
-    <div class="contact-cards fu" style="transition-delay:0.1s">
-      <a href="mailto:nujithaw@gmail.com" class="contact-card">
-        <div class="cc-icon">✉</div>
-        <div><div class="cc-label">Email</div><div class="cc-val">nujithaw@gmail.com</div></div>
-      </a>
-      <a href="https://linkedin.com/in/YOUR_LINKEDIN" class="contact-card" target="_blank">
-        <div class="cc-icon" style="font-size:0.75rem;font-weight:700">in</div>
-        <div><div class="cc-label">LinkedIn</div><div class="cc-val">linkedin.com/in/YOUR_LINKEDIN</div></div>
-      </a>
-      <a href="https://github.com/YOUR_GITHUB" class="contact-card" target="_blank">
-        <div class="cc-icon">⌥</div>
-        <div><div class="cc-label">GitHub</div><div class="cc-val">github.com/YOUR_GITHUB</div></div>
-      </a>
-      <a href="tel:9053414610" class="contact-card">
-        <div class="cc-icon">📞</div>
-        <div><div class="cc-label">Phone</div><div class="cc-val">(905) 341-4610</div></div>
-      </a>
     </div>
   </div>
 </section>
 
-<footer>
-  <span class="fc">© 2026 NICK (NUJITHA W.)</span>
-  <span class="fc">WATERLOO, ON · OPEN TO WORK</span>
-</footer>
+<!-- RÉSUMÉ -->
+<section class="section" id="resume">
+  <div class="fu">
+    <div class="section-title">Résumé</div>
+    <div class="section-sub">Academic background, work experience, and skills</div>
+  </div>
 
-<script>
-  const obs = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('vis'); obs.unobserve(e.target); } });
-  }, { threshold: 0.08 });
-  document.querySelectorAll('.fu').forEach(el => obs.observe(el));
-  setTimeout(() => { document.querySelectorAll('.hero .fu').forEach(el => el.classList.add('vis')); }, 80);
-</script>
-</body>
-</html>
+  <div class="resume-cols">
+
+    <!-- EDUCATION -->
+    <div class="resume-block fu">
+      <h3>Education</h3>
+      <div class="timeline">
+
+        <div class="titem">
+          <div class="tline"><div class="tdot"></div><div class="tbar"></div></div>
+          <div class="tcontent">
+            <div class="tdate">Sep 2023 – Sep 2025</div>
+            <div class="ttitle">Master of Science in Computer Science</div>
+            <div class="tplace">Brock University · St. Catharines, ON, Canada</div>
+            <ul class="tdetails">
+              <li>GPA: <strong>95%</strong></li>
+              <li>Thesis: ML-based intrusion detection for wireless networks (VANETs)</li>
+              <li>Published 3 peer-reviewed papers (IEEE · Elsevier)</li>
+              <li>Dean of Graduate Studies Spring Research Fellowship 2025</li>
+            </ul>
+            <span class="tbadge">AI for Cybersecurity · Network Security · Distributed Systems</span>
+          </div>
+        </div>
+
+        <div class="titem">
+          <div class="tline"><div class="tdot" style="background:var(--accent2); outline-color:var(--accent2)"></div><div class="tbar"></div></div>
+          <div class="tcontent">
+            <div class="tdate">2018 – 2022</div>
+            <div class="ttitle">BEng (Hons) Software Engineering — First Class</div>
+            <div class="tplace">University of Westminster · London, UK</div>
+            <ul class="tdetails">
+              <li>First Class Honours</li>
+              <li>Coursework: Software Architecture, AI, Data Structures, Cybersecurity & Forensics</li>
+            </ul>
+            <span class="tbadge">Web Technologies · Database Systems · Systems Engineering</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- EXPERIENCE -->
+    <div class="resume-block fu" style="transition-delay:0.08s">
+      <h3>Experience</h3>
+      <div class="timeline">
+
+        <div class="titem">
+          <div class="tline"><div class="tdot"></div><div class="tbar"></div></div>
+          <div class="tcontent">
+            <div class="tdate">Sep 2023 – Sep 2025</div>
+            <div class="ttitle">Software Engineer (Research)</div>
+            <div class="tplace">Brock University · St. Catharines, ON</div>
+            <ul class="tdetails">
+              <li>Built ML-based IDS for wireless networks using TensorFlow, BERT — 95%+ detection accuracy on 100,000+ samples</li>
+              <li>Designed experiments for RF jamming detection in VANETs; deployed live PoC with Docker + Streamlit</li>
+              <li>Published and presented at IEEE SysCon 2025 and Elsevier IJCIP 2026</li>
+              <li>Built end-to-end automated data pipelines for network traffic preprocessing</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="titem">
+          <div class="tline"><div class="tdot"></div><div class="tbar"></div></div>
+          <div class="tcontent">
+            <div class="tdate">Sep 2023 – Sep 2025</div>
+            <div class="ttitle">Teaching Assistant</div>
+            <div class="tplace">Brock University · St. Catharines, ON</div>
+            <ul class="tdetails">
+              <li>Led lab sessions for 20+ students in OOP, algorithms, and data structures</li>
+              <li>Provided 1-on-1 debugging help and concept walkthroughs</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="titem">
+          <div class="tline"><div class="tdot" style="background:var(--accent2); outline-color:var(--accent2)"></div><div class="tbar"></div></div>
+          <div class="tcontent">
+            <div class="tdate">Sep 2022 – Aug 2023</div>
+            <div class="ttitle">Backend Software Engineer</div>
+            <div class="tplace">IFS · Colombo, Sri Lanka</div>
+            <ul class="tdetails">
+              <li>Architected microservices for Aviation & Defence ERP platforms — 10,000+ daily transactions, 100+ global clients</li>
+              <li>Built production REST APIs with Java Spring Boot, 99%+ uptime through systematic monitoring</li>
+              <li>Implemented Jenkins/GitLab CI/CD with Docker — reduced deployment cycles significantly</li>
+              <li>Engineered zero-downtime deployments across AWS, GCP, and Azure using blue-green strategy</li>
+              <li>Handled production incident management — root cause analysis, fix deployment, postmortem</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="titem">
+          <div class="tline"><div class="tdot" style="background:var(--warm); outline-color:var(--warm)"></div><div class="tbar"></div></div>
+          <div class="tcontent">
+            <div class="tdate">Jul 2020 – Jun 2021</div>
+            <div class="ttitle">Software Engineer Intern</div>
+            <div class="tplace">Avtra (Airline Operations Software) · Colombo, Sri Lanka</div>
+            <ul class="tdetails">
+              <li>Built backend services and REST APIs for real-time airline operations across 5+ international airports</li>
+              <li>Implemented JWT authentication, role-based auth, and secure API endpoints</li>
+              <li>Optimised DB queries and connection pooling — improved response times by 50% in low-bandwidth environments</li>
+              <li>Achieved 95%+ system stability through JUnit testing, integration tests, and load testing</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <!-- SKILLS -->
+  <div class="fu" style="transition-delay:0.1s; margin-top:3rem">
+    <h3 style="font-family:'Syne',sans-serif;font-weight:700;font-size:1rem;margin-bottom:1.5rem;padding-bottom:0.75rem;border-bottom:1px solid var(--border);">Skills</h3>
+    <div class="skills-grid">
+      <div class="skill-block">
+        <h4>Backend & APIs</h4>
+        <div class="skill-tags">
+          <span class="skill-tag">Java Spring Boot</span>
+          <span class="skill-tag">.NET Core</span>
+          <span class="skill-tag">RESTful APIs</span>
+          <span class="skill-tag">Microservices</span>
+          <span class="skill-tag">Hibernate / JPA</span>
+          <span class="skill-tag">Node.js</span>
+          <span class="skill-tag">JMS</span>
+        </div>
+      </div>
+      <div class="skill-block">
+        <h4>Frontend</h4>
+        <div class="skill-tags">
+          <span class="skill-tag">Angular</span>
+          <span class="skill-tag">TypeScript</span>
+          <span class="skill-tag">JavaScript</span>
+          <span class="skill-tag">HTML5 / CSS3</span>
+          <span class="skill-tag">Bootstrap</span>
+          <span class="skill-tag">Responsive UI</span>
+        </div>
+      </div>
+      <div class="skill-block">
+        <h4>Cloud & DevOps</h4>
+        <div class="skill-tags">
+          <span class="skill-tag">AWS</span>
+          <span class="skill-tag">GCP</span>
+          <span class="skill-tag">Azure</span>
+          <span class="skill-tag">Docker</span>
+          <span class="skill-tag">Kubernetes</span>
+          <span class="skill-tag">Jenkins</span>
+          <span class="skill-tag">GitLab CI/CD</span>
+          <span class="skill-tag">Terraform</span>
+        </div>
+      </div>
+      <div class="skill-block">
+        <h4>ML & Data</h4>
+        <div class="skill-tags">
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">TensorFlow</span>
+          <span class="skill-tag">scikit-learn</span>
+          <span class="skill-tag">PyTorch</span>
+          <span class="skill-tag">BERT</span>
+          <span class="skill-tag">Pandas / NumPy</span>
+          <span class="skill-tag">Feature Engineering</span>
+        </div>
+      </div>
+      <div class="skill-block">
+        <h4>Databases</h4>
+        <div class="skill-tags">
+          <span class="skill-tag">SQL Server</span>
+          <span class="skill-tag">PostgreSQL</span>
+          <span class="skill-tag">Oracle</span>
+          <span class="skill-tag">Redis</span>
+          <span class="skill-tag">PL/SQL</span>
+          <span class="skill-tag">Query Optimisation</span>
+        </div>
+      </div>
+      <div class="skill-block">
+        <h4>Ways of Working</h4>
+        <div class="skill-tags">
+          <span class="skill-tag">Agile / Scrum</span>
+          <span class="skill-tag">Code Review</span>
+          <span class="skill-tag">Pair Programming</span>
+          <span class="skill-tag">Technical Docs</span>
+          <span class="skill-tag">Cross-timezone Collaboration</span>
+          <span class="skill-tag">Mentorship</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PUBLICATIONS -->
+<section class="section" id="publications">
+  <div class="fu">
+    <div class="section-title">Publications</div>
+    <div class="section-sub">Peer-reviewed research in IEEE and Elsevier venues</div>
+  </div>
+  <div class="pub-list">
+
+    <div class="pub-card fu">
+      <div class="pub-venue">Elsevier IJCIP · 2026 · Journal</div>
+      <div class="pub-title">ML and Meta-Model Approaches for Intrusion Detection</div>
+      <p class="pub-summary">
+        Novel IDS architecture combining LSTM and XGBoost with ensemble meta-models — 96.2% detection accuracy and 94.8% F1-score on NSL-KDD and CICIDS2017. Demonstrated applicability to 5G core network traffic and IoT anomaly detection relevant to 6G security frameworks.
+      </p>
+      <div class="pub-footer">
+        <div class="pub-tags">
+          <span class="pub-tag">LSTM</span><span class="pub-tag">XGBoost</span><span class="pub-tag">Ensemble</span><span class="pub-tag">IDS</span><span class="pub-tag">5G</span>
+        </div>
+        <a href="https://doi.org/10.1016/j.ijcip.2026.100830" class="pub-doi" target="_blank">↗ DOI: 10.1016/j.ijcip.2026.100830</a>
+      </div>
+    </div>
+
+    <div class="pub-card fu" style="transition-delay:0.06s; border-left-color:var(--warm)">
+      <div class="pub-venue" style="color:var(--warm)">IEEE SysCon · 2025 · Conference</div>
+      <div class="pub-title">RF Jamming Intrusion Detection for Vehicular Networks using LLM</div>
+      <p class="pub-summary">
+        Pioneered use of BERT for RF jamming detection in VANETs — converting physical-layer RF signals to tokenised representations. 95.3% accuracy across 100,000+ CAN bus message sequences, 200ms latency suitable for real-time vehicular safety. Built proof-of-concept with Docker + Streamlit. Presented at IEEE SysCon 2025.
+      </p>
+      <div class="pub-footer">
+        <div class="pub-tags">
+          <span class="pub-tag">BERT</span><span class="pub-tag">VANETs</span><span class="pub-tag">RF Jamming</span><span class="pub-tag">V2X</span><span class="pub-tag">6G</span>
+        </div>
+        <a href="https://doi.org/10.1109/SysCon64521.2025.11014799" class="pub-doi" target="_blank">↗ DOI: 10.1109/SysCon64521.2025.11014799</a>
+      </div>
+    </div>
+
+    <div class="pub-card fu" style="transition-delay:0.12s; border-left-color:var(--pink)">
+      <div class="pub-venue" style="color:var(--pink)">IEEE ASIANCON · 2021 · Conference</div>
+      <div class="pub-title">Automated Marketing Campaign Predictions using ML</div>
+      <p class="pub-summary">
+        Ensemble model combining decision trees and neural networks for campaign ROI prediction — 87% accuracy with iterative prototyping and A/B testing validation. Implemented end-to-end data pipeline with automated feature engineering and deployment.
+      </p>
+      <div class="pub-footer">
+        <div class="pub-tags">
+          <span class="pub-tag">Ensemble ML</span><span class="pub-tag">Neural Net</span><span class="pub-tag">Decision Trees</span><span class="pub-tag">A/B Testing</span>
+        </div>
+        <a href="https://doi.org/10.1109/ASIANCON51346.2021.9544552" class="pub-doi" target="_blank">↗ DOI: 10.1109/ASIANCON51346.2021.9544552</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- AWARDS -->
+<section class="section" id="awards">
+  <div class="fu">
+    <div class="section-title">Honors & Awards</div>
+    <div class="section-sub">Recognitions from Brock University</div>
+  </div>
+  <div class="awards-grid">
+    <div class="award-card fu">
+      <div class="award-icon">🏅</div>
+      <div>
+        <div class="award-name">Dean of Graduate Studies Spring Research Fellowship</div>
+        <div class="award-org">Brock University · 2025</div>
+        <p class="award-desc">Awarded for academic excellence and research contributions during the Spring 2025 term.</p>
+      </div>
+    </div>
+    <div class="award-card fu" style="transition-delay:0.06s">
+      <div class="award-icon">🌐</div>
+      <div>
+        <div class="award-name">International Graduate Fellowship</div>
+        <div class="award-org">Brock University · 2023 / 2025</div>
+        <p class="award-desc">Awarded to outstanding international graduate students across both years of the MSc programme.</p>
+      </div>
+    </div>
+    <div class="award-card fu" style="transition-delay:0.12s">
+      <div class="award-icon">🔬</div>
+      <div>
+        <div class="award-name">Research Fellowship</div>
+        <div class="award-org">Brock University · 2023 / 2025</div>
+        <p class="award-desc">Competitive research fellowship supporting graduate work in AI, network security, and distributed systems.</p>
+      </div>
+    </div>
+    <div class="award-card fu" style="transition-delay:0.18s">
+      <div class="award-icon">🎓</div>
+      <div>
+        <div class="award-name">First Class Honours — BEng Software Engineering</div>
+        <div class="award-org">University of Westminster · London, UK</div>
+        <p class="award-desc">Graduated with First Class Honours — the highest classification awarded by the university.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VOLUNTEER -->
+<section class="section" id="volunteer">
+  <div class="fu">
+    <div class="section-title">Volunteer & Service</div>
+    <div class="section-sub">Giving back to STEM and the community</div>
+  </div>
+  <div class="vol-list">
+    <div class="vol-card fu">
+      <div>
+        <div class="vol-role">Judge — FIRST Ontario Tech Challenges & Robotics Championships</div>
+        <div class="vol-org">Brock University</div>
+        <p class="vol-desc">
+          Evaluating autonomous robotics, control systems, and engineering innovation across provincial STEM competitions.
+          Interviews multidisciplinary high school teams, scores against standardised engineering criteria, and selects award-winning solutions.
+          Assesses design rigour, technical performance, scalability, and reliability.
+        </p>
+      </div>
+      <div class="vol-date">Mar 2025 – Present</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="fu">
+  <span class="fc">© 2026 NUJITHA W.</span>
+  <span class="fc"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="38564d52514c50594f785f55595154165b5755">[email&#160;protected]</a> · TORONTO, ON · OPEN TO WORK</span>
+</footer>
+</div><!-- .page -->
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></s

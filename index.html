@@ -510,7 +510,7 @@
       </p>
       <div class="hero-actions">
         <a href="YOUR_CV_LINK.pdf" class="btn btn-solid" download>↓ Download CV</a>
-        <a href="/cdn-cgi/l/email-protection#f59b809f9c819d9482b59298949c99db969a98" class="btn btn-outline">✉ Email Me</a>
+        <a href="mailto:nujithaw@gmail.com" class="btn btn-outline">✉ Email Me</a>
         <a href="https://linkedin.com/in/YOUR_LINKEDIN" class="btn btn-outline" target="_blank">LinkedIn</a>
         <a href="https://github.com/YOUR_GITHUB" class="btn btn-outline" target="_blank">GitHub</a>
       </div>
@@ -554,7 +554,7 @@
         <h4>Contact</h4>
         <div class="contact-items">
           <div class="contact-item"><strong>City</strong> Toronto, ON, Canada</div>
-          <div class="contact-item"><strong>Email</strong> <a href="/cdn-cgi/l/email-protection#254b504f4c514d4452654248444c490b464a48"><span class="__cf_email__" data-cfemail="68061d02011c00091f280f05090104460b0705">[email&#160;protected]</span></a></div>
+          <div class="contact-item"><strong>Email</strong> <a href="mailto:nujithaw@gmail.com">nujithaw@gmail.com</a></div>
           <div class="contact-item"><strong>Phone</strong> (905) 341-4610</div>
           <div class="contact-item"><strong>LinkedIn</strong> <a href="https://linkedin.com/in/YOUR_LINKEDIN" target="_blank">View Profile</a></div>
           <div class="contact-item"><strong>GitHub</strong> <a href="https://github.com/YOUR_GITHUB" target="_blank">View Profile</a></div>
@@ -917,8 +917,16 @@
 <!-- FOOTER -->
 <footer class="fu">
   <span class="fc">© 2026 NUJITHA W.</span>
-  <span class="fc"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="38564d52514c50594f785f55595154165b5755">[email&#160;protected]</a> · TORONTO, ON · OPEN TO WORK</span>
+  <span class="fc">nujithaw@gmail.com · TORONTO, ON · OPEN TO WORK</span>
 </footer>
 </div><!-- .page -->
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></s
+<script>
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('vis'); obs.unobserve(e.target); } });
+  }, { threshold: 0.07 });
+  document.querySelectorAll('.fu').forEach(el => obs.observe(el));
+  setTimeout(() => document.querySelectorAll('#hero .fu').forEach(el => el.classList.add('vis')), 80);
+</script>
+</body>
+</html>

@@ -138,8 +138,11 @@
     .skill-tag:hover, .skill-tag.highlighted { border-color: var(--accent); color: var(--accent); background: var(--accent-light); }
 
     /* ── EXPERIENCE ── */
-    .experience-list { margin-top: 3.5rem; display: flex; flex-direction: column; gap: 0; }
-    .exp-item { display: grid; grid-template-columns: 210px 1fr; gap: 2.5rem; padding: 2.8rem 0; border-bottom: 1px solid var(--border-light); }
+    .experience-list { margin-top: 3.5rem; display: flex; flex-direction: column; gap: 0; position: relative; }
+    .experience-list::before { content: ''; position: absolute; top: 0; bottom: 0; left: 230px; width: 2px; background: var(--border-light); }
+    .exp-item { display: grid; grid-template-columns: 210px 1fr; gap: 2.5rem; padding: 2.8rem 0; border-bottom: 1px solid var(--border-light); position: relative; }
+    .exp-item::before { content: ''; position: absolute; left: 230px; top: 3.1rem; width: 11px; height: 11px; border-radius: 50%; background: var(--bg-card); border: 2px solid var(--border); transform: translate(-50%, 0); transition: background 0.4s ease, border-color 0.4s ease, transform 0.4s ease; z-index: 2; }
+    .exp-item.visible::before { background: var(--accent); border-color: var(--accent); transform: translate(-50%, 0) scale(1.35); }
     .exp-date { font-family: var(--font-mono); font-size: 0.66rem; color: var(--text-light); letter-spacing: 0.06em; margin-bottom: 0.4rem; }
     .exp-company { font-size: 0.9rem; font-weight: 600; color: var(--text); margin-bottom: 0.15rem; }
     .exp-location { font-size: 0.76rem; color: var(--text-light); margin-bottom: 0.55rem; }
@@ -184,11 +187,37 @@
     .project-highlights li::before { content: '▸'; position: absolute; left: 0; color: var(--accent); font-size: 0.68rem; top: 0.52rem; }
     .project-highlights li strong { color: var(--text); }
 
-    .project-tech { display: flex; flex-wrap: wrap; gap: 0.38rem; margin-top: auto; }
+    .project-tech { display: flex; flex-wrap: wrap; gap: 0.38rem; margin-top: 0.2rem; }
     .project-tech-tag { font-family: var(--font-mono); font-size: 0.63rem; padding: 0.2rem 0.58rem; background: var(--accent-light); color: var(--accent); border-radius: 4px; }
     .project-tech-tag.teal { background: rgba(25,107,96,0.1); color: var(--accent-teal); }
     .project-tech-tag.warm { background: rgba(181,112,58,0.1); color: var(--accent-warm); }
     .project-tech-tag.dark { background: var(--border-light); color: var(--text-muted); }
+
+    /* ── PROJECT FILTERS ── */
+    .project-filters { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 2.2rem; }
+    .filter-btn { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.05em; text-transform: uppercase; padding: 0.48rem 1.05rem; border-radius: 99px; border: 1.5px solid var(--border); background: transparent; color: var(--text-muted); cursor: pointer; transition: border-color 0.2s, color 0.2s, background 0.2s; }
+    .filter-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .filter-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+    .project-card { transition: opacity 0.3s ease, transform 0.3s ease; }
+    .project-card.filtered-out { opacity: 0; transform: scale(0.96); pointer-events: none; }
+
+    .project-more-btn { display: inline-flex; align-items: center; gap: 0.45rem; margin-top: auto; align-self: flex-start; background: none; border: 1.5px solid var(--border); color: var(--text); font-family: var(--font-body); font-size: 0.79rem; font-weight: 500; letter-spacing: 0.03em; padding: 0.58rem 1.15rem; border-radius: 99px; cursor: pointer; transition: border-color 0.2s, color 0.2s, background 0.2s, transform 0.2s; }
+    .project-more-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-light); transform: translateX(2px); }
+
+    /* ── PROJECT MODAL ── */
+    .project-modal-overlay { position: fixed; inset: 0; background: rgba(10,11,14,0.72); backdrop-filter: blur(6px); display: flex; align-items: center; justify-content: center; padding: 2rem; z-index: 500; opacity: 0; visibility: hidden; transition: opacity 0.28s ease, visibility 0s linear 0.28s; }
+    .project-modal-overlay.open { opacity: 1; visibility: visible; transition: opacity 0.28s ease; }
+    .project-modal { background: var(--bg); border-radius: var(--radius); max-width: 660px; width: 100%; max-height: 86vh; overflow-y: auto; box-shadow: var(--shadow-lg); position: relative; transform: translateY(18px) scale(0.98); transition: transform 0.32s ease; }
+    .project-modal-overlay.open .project-modal { transform: translateY(0) scale(1); }
+    .modal-close { position: absolute; top: 1rem; right: 1rem; width: 34px; height: 34px; border-radius: 50%; border: none; background: rgba(255,255,255,0.18); color: #fff; font-size: 1.35rem; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 5; transition: background 0.2s; }
+    .modal-close:hover { background: rgba(255,255,255,0.32); }
+    .modal-media { margin-bottom: 1.2rem; border-radius: var(--radius-sm); overflow: hidden; }
+    .modal-media:empty { display: none; }
+    .modal-media img { display: block; width: 100%; height: auto; }
+    .modal-links { display: flex; flex-wrap: wrap; gap: 0.7rem; margin-top: 1.5rem; }
+    .modal-links:empty { display: none; }
+    .modal-link-btn { display: inline-flex; align-items: center; gap: 0.45rem; font-size: 0.79rem; padding: 0.6rem 1.2rem; }
 
     /* ── EDUCATION ── */
     .edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.4rem; margin-top: 3rem; }
@@ -204,6 +233,14 @@
     .edu-grade.warm { background: var(--accent-warm); }
     .edu-section { font-size: 0.82rem; color: var(--text-muted); line-height: 1.7; margin-top: 0.6rem; }
     .edu-section strong { display: block; font-size: 0.68rem; letter-spacing: 0.07em; text-transform: uppercase; color: var(--text-light); margin-bottom: 0.35rem; }
+
+    /* ── VOLUNTEERING ── */
+    .volunteer-grid { display: grid; grid-template-columns: 1fr; gap: 1.2rem; margin-top: 3rem; max-width: 760px; }
+    .volunteer-placeholder { border: 1.5px dashed var(--border); border-radius: var(--radius); padding: 2.2rem 2.4rem; background: var(--bg-card); }
+    .vp-tag { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent-warm); background: rgba(181,112,58,0.1); display: inline-block; padding: 0.24rem 0.62rem; border-radius: 4px; margin-bottom: 1rem; }
+    .volunteer-placeholder h3 { font-family: var(--font-display); font-size: 1.35rem; font-weight: 400; margin-bottom: 0.5rem; color: var(--text); }
+    .volunteer-placeholder p { font-size: 0.89rem; color: var(--text-muted); line-height: 1.75; }
+    .volunteer-placeholder p + p { margin-top: 0.6rem; }
 
     /* ── CONTACT ── */
     #contact { background: var(--bg-dark); color: #fff; position: relative; overflow: hidden; }
@@ -241,6 +278,7 @@
       .project-card.featured { grid-template-columns: 1fr; }
       .edu-grid { grid-template-columns: 1fr; }
       .exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
+      .experience-list::before, .exp-item::before { display: none; }
     }
     @media (max-width: 580px) {
       .hero-right { grid-template-columns: 1fr; }
@@ -261,6 +299,7 @@
       <li><a href="#experience">Experience</a></li>
       <li><a href="#projects">Projects</a></li>
       <li><a href="#education">Education</a></li>
+      <li><a href="#volunteering">Volunteer</a></li>
     </ul>
     <a href="#contact" class="nav-cta">Contact</a>
   </nav>
@@ -305,22 +344,22 @@
 
     <div class="hero-right">
       <div class="stat-card">
-        <div class="stat-number">3+</div>
+        <div class="stat-number" data-count-to="3" data-suffix="+">3+</div>
         <div class="stat-label">Years Experience</div>
         <div class="stat-desc">Enterprise ERP, cloud systems &amp; ML research</div>
       </div>
       <div class="stat-card">
-        <div class="stat-number">99%</div>
+        <div class="stat-number" data-count-to="99" data-suffix="%">99%</div>
         <div class="stat-label">System Uptime</div>
         <div class="stat-desc">Mission-critical ERP · 100+ global clients</div>
       </div>
       <div class="stat-card">
-        <div class="stat-number">95%</div>
+        <div class="stat-number" data-count-to="95" data-suffix="%">95%</div>
         <div class="stat-label">ML Accuracy</div>
         <div class="stat-desc">Intrusion detection · 100K+ network samples</div>
       </div>
       <div class="stat-card">
-        <div class="stat-number">40%</div>
+        <div class="stat-number" data-count-to="40" data-suffix="%">40%</div>
         <div class="stat-label">Deploy Reduction</div>
         <div class="stat-desc">Docker CI/CD · Jenkins · GitHub Actions</div>
       </div>
@@ -680,12 +719,20 @@
     <div class="section-inner">
       <div class="section-label">Selected Work</div>
       <h2 class="section-title">Projects &amp; <em>Research</em></h2>
-      <p class="section-sub">Highlighted technical work spanning cybersecurity ML research, enterprise ERP engineering, full-stack modernisation, and cloud-native deployment automation.</p>
+      <p class="section-sub">Highlighted technical work spanning cybersecurity ML research, enterprise ERP engineering, full-stack modernisation, and cloud-native deployment automation. Filter by domain or open a card for the full case study.</p>
+
+      <div class="project-filters" role="group" aria-label="Filter projects by domain">
+        <button class="filter-btn active" type="button" data-filter="all">All</button>
+        <button class="filter-btn" type="button" data-filter="research">Research &amp; ML</button>
+        <button class="filter-btn" type="button" data-filter="erp">ERP</button>
+        <button class="filter-btn" type="button" data-filter="devops">DevOps</button>
+        <button class="filter-btn" type="button" data-filter="airline">Airline Ops</button>
+      </div>
 
       <div class="projects-grid">
 
         <!-- Featured -->
-        <div class="project-card featured reveal">
+        <div class="project-card featured reveal" data-category="research" data-github="" data-demo="" data-paper="" data-image="">
           <div class="project-header teal">
             <div class="phbg"></div>
             <div class="project-cat">Brock University Research · IEEE / Elsevier Publication</div>
@@ -693,22 +740,14 @@
           </div>
           <div class="project-body">
             <p class="project-desc">
-              An end-to-end machine learning pipeline for detecting network intrusions in cybersecurity environments, developed as part of MSc research at Brock University.
-              The system processes 100,000+ real network traffic samples through a distributed Azure pipeline, trains anomaly detection and classification models, and delivers
-              measurable security detection performance — with findings peer-reviewed and published at IEEE and Elsevier international cybersecurity conferences.
+              An end-to-end machine learning pipeline for detecting network intrusions, built as part of MSc research at Brock University — processing 100,000+ real
+              network traffic samples through a distributed Azure pipeline to train and evaluate anomaly detection models.
             </p>
             <div class="project-metrics">
               <div><div class="metric-value" style="color:var(--accent-teal);">95%+</div><div class="metric-label">Detection Accuracy</div></div>
               <div><div class="metric-value" style="color:var(--accent-teal);">100K+</div><div class="metric-label">Network Samples</div></div>
               <div><div class="metric-value" style="color:var(--accent-teal);">2×</div><div class="metric-label">Conf. Publications</div></div>
             </div>
-            <ul class="project-highlights">
-              <li>Parallel data partitioning on <strong>Azure</strong> for high-throughput preprocessing of live network traffic datasets</li>
-              <li>Model evaluation across <strong>precision, recall, F1-score, and ROC-AUC</strong> — systematic hyperparameter optimisation per variant</li>
-              <li><strong>TLS encryption</strong>, key exchange, and access control for privacy-preserving handling of sensitive cybersecurity data</li>
-              <li>Automated ETL with validation and error recovery — full <strong>experimental reproducibility</strong> guaranteed across runs</li>
-              <li>Containerised with <strong>Docker</strong> for consistent model versioning and collaborative research workflows</li>
-            </ul>
             <div class="project-tech">
               <span class="project-tech-tag teal">Python</span>
               <span class="project-tech-tag teal">scikit-learn</span>
@@ -719,11 +758,29 @@
               <span class="project-tech-tag teal">ETL Pipelines</span>
               <span class="project-tech-tag teal">Anomaly Detection</span>
             </div>
+            <button class="project-more-btn" type="button">
+              View Case Study
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
           </div>
+          <template class="project-detail-tpl">
+            <p>
+              An end-to-end machine learning pipeline for detecting network intrusions in cybersecurity environments, developed as part of MSc research at Brock University.
+              The system processes 100,000+ real network traffic samples through a distributed Azure pipeline, trains anomaly detection and classification models, and delivers
+              measurable security detection performance — with findings peer-reviewed and published at IEEE and Elsevier international cybersecurity conferences.
+            </p>
+            <ul class="project-highlights">
+              <li>Parallel data partitioning on <strong>Azure</strong> for high-throughput preprocessing of live network traffic datasets</li>
+              <li>Model evaluation across <strong>precision, recall, F1-score, and ROC-AUC</strong> — systematic hyperparameter optimisation per variant</li>
+              <li><strong>TLS encryption</strong>, key exchange, and access control for privacy-preserving handling of sensitive cybersecurity data</li>
+              <li>Automated ETL with validation and error recovery — full <strong>experimental reproducibility</strong> guaranteed across runs</li>
+              <li>Containerised with <strong>Docker</strong> for consistent model versioning and collaborative research workflows</li>
+            </ul>
+          </template>
         </div>
 
         <!-- IFS ERP -->
-        <div class="project-card reveal">
+        <div class="project-card reveal" data-category="erp" data-github="" data-demo="" data-paper="" data-image="">
           <div class="project-header slate">
             <div class="phbg"></div>
             <div class="project-cat">IFS · Aviation &amp; Defence · Finance ERP · Consulting</div>
@@ -732,18 +789,11 @@
           <div class="project-body">
             <p class="project-desc">
               Full-stack feature delivery across IFS ERP — a globally recognised enterprise platform — spanning Aviation &amp; Defence and Finance domains within the client consulting team.
-              Responsibilities covered end-to-end engineering, stakeholder engagement, change management, and multi-cloud deployment across a global client fleet.
             </p>
             <div class="project-metrics">
               <div><div class="metric-value">100+</div><div class="metric-label">Global Clients</div></div>
               <div><div class="metric-value">40%</div><div class="metric-label">Faster Deploys</div></div>
             </div>
-            <ul class="project-highlights">
-              <li>Aviation MRO, defence logistics, and <strong>financial services ERP modules</strong> — Java Spring Boot, .NET, Angular</li>
-              <li>Client consulting: <strong>requirements analysis, ServiceNow ITSM</strong>, regulatory compliance delivery</li>
-              <li>Legacy Windows ERP → <strong>cloud-native web</strong> migration across Azure, AWS, and GCP</li>
-              <li><strong>OAuth 2.0 and RBAC</strong>-secured API architecture across all ERP service endpoints</li>
-            </ul>
             <div class="project-tech">
               <span class="project-tech-tag">Java Spring Boot</span>
               <span class="project-tech-tag">.NET</span>
@@ -752,11 +802,27 @@
               <span class="project-tech-tag">ServiceNow</span>
               <span class="project-tech-tag">Oracle</span>
             </div>
+            <button class="project-more-btn" type="button">
+              View Case Study
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
           </div>
+          <template class="project-detail-tpl">
+            <p>
+              Full-stack feature delivery across IFS ERP — a globally recognised enterprise platform — spanning Aviation &amp; Defence and Finance domains within the client consulting team.
+              Responsibilities covered end-to-end engineering, stakeholder engagement, change management, and multi-cloud deployment across a global client fleet.
+            </p>
+            <ul class="project-highlights">
+              <li>Aviation MRO, defence logistics, and <strong>financial services ERP modules</strong> — Java Spring Boot, .NET, Angular</li>
+              <li>Client consulting: <strong>requirements analysis, ServiceNow ITSM</strong>, regulatory compliance delivery</li>
+              <li>Legacy Windows ERP → <strong>cloud-native web</strong> migration across Azure, AWS, and GCP</li>
+              <li><strong>OAuth 2.0 and RBAC</strong>-secured API architecture across all ERP service endpoints</li>
+            </ul>
+          </template>
         </div>
 
         <!-- CI/CD -->
-        <div class="project-card reveal">
+        <div class="project-card reveal" data-category="devops" data-github="" data-demo="" data-paper="" data-image="">
           <div class="project-header warm">
             <div class="phbg"></div>
             <div class="project-cat">DevOps · CI/CD · Multi-Cloud Automation</div>
@@ -764,18 +830,12 @@
           </div>
           <div class="project-body">
             <p class="project-desc">
-              Designed and implemented end-to-end CI/CD automation for a global ERP client fleet, reducing deployment cycle time by 40% while maintaining zero-downtime SLAs
-              across multi-cloud environments via Docker, Jenkins, GitLab, and GitHub Actions.
+              Designed and implemented end-to-end CI/CD automation for a global ERP client fleet, reducing deployment cycle time by 40% while maintaining zero-downtime SLAs.
             </p>
             <div class="project-metrics">
               <div><div class="metric-value" style="color:var(--accent-warm);">40%</div><div class="metric-label">Cycle Time Reduction</div></div>
               <div><div class="metric-value" style="color:var(--accent-warm);">0</div><div class="metric-label">Downtime Incidents</div></div>
             </div>
-            <ul class="project-highlights">
-              <li>Multi-stage pipelines: <strong>Jenkins, GitLab CI/CD, GitHub Actions</strong> with automated quality gates</li>
-              <li>Docker containerisation with <strong>blue-green strategies</strong> across Azure VMs, AWS, and GCP</li>
-              <li>Custom shell migration scripts ensuring data integrity during live environment upgrades</li>
-            </ul>
             <div class="project-tech">
               <span class="project-tech-tag warm">Docker</span>
               <span class="project-tech-tag warm">Jenkins</span>
@@ -783,11 +843,26 @@
               <span class="project-tech-tag warm">GitHub Actions</span>
               <span class="project-tech-tag warm">Shell Scripting</span>
             </div>
+            <button class="project-more-btn" type="button">
+              View Case Study
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
           </div>
+          <template class="project-detail-tpl">
+            <p>
+              Designed and implemented end-to-end CI/CD automation for a global ERP client fleet, reducing deployment cycle time by 40% while maintaining zero-downtime SLAs
+              across multi-cloud environments via Docker, Jenkins, GitLab, and GitHub Actions.
+            </p>
+            <ul class="project-highlights">
+              <li>Multi-stage pipelines: <strong>Jenkins, GitLab CI/CD, GitHub Actions</strong> with automated quality gates</li>
+              <li>Docker containerisation with <strong>blue-green strategies</strong> across Azure VMs, AWS, and GCP</li>
+              <li>Custom shell migration scripts ensuring data integrity during live environment upgrades</li>
+            </ul>
+          </template>
         </div>
 
         <!-- Avtra -->
-        <div class="project-card reveal">
+        <div class="project-card reveal" data-category="airline" data-github="" data-demo="" data-paper="" data-image="">
           <div class="project-header navy">
             <div class="phbg"></div>
             <div class="project-cat">Avtra · Airline Operations · 5+ Airports</div>
@@ -795,19 +870,13 @@
           </div>
           <div class="project-body">
             <p class="project-desc">
-              Backend engineering for a live airline operations platform deployed across 5+ international airports — including REST API delivery, real-time WebSocket
-              communication, performance-critical SQL optimisation, and production observability in bandwidth-constrained airport network environments.
+              Backend engineering for a live airline operations platform deployed across 5+ international airports, with real-time WebSocket communication and
+              performance-critical SQL optimisation in bandwidth-constrained network environments.
             </p>
             <div class="project-metrics">
               <div><div class="metric-value">50%</div><div class="metric-label">API Performance Gain</div></div>
               <div><div class="metric-value">5+</div><div class="metric-label">Airport Deployments</div></div>
             </div>
-            <ul class="project-highlights">
-              <li><strong>Jakarta WebSocket API</strong> migration — live printing and event-driven messaging across all airports</li>
-              <li>SQL query rewrites and targeted indexing for <strong>50% response time improvement</strong></li>
-              <li><strong>AWS CloudWatch</strong> and structured Linux logging for production observability</li>
-              <li>Shell-scripted automated deployment across all airport environment configurations</li>
-            </ul>
             <div class="project-tech">
               <span class="project-tech-tag">Java Spring Boot</span>
               <span class="project-tech-tag">Jakarta WebSocket</span>
@@ -815,7 +884,23 @@
               <span class="project-tech-tag">Linux / Shell</span>
               <span class="project-tech-tag">SQL Optimisation</span>
             </div>
+            <button class="project-more-btn" type="button">
+              View Case Study
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
           </div>
+          <template class="project-detail-tpl">
+            <p>
+              Backend engineering for a live airline operations platform deployed across 5+ international airports — including REST API delivery, real-time WebSocket
+              communication, performance-critical SQL optimisation, and production observability in bandwidth-constrained airport network environments.
+            </p>
+            <ul class="project-highlights">
+              <li><strong>Jakarta WebSocket API</strong> migration — live printing and event-driven messaging across all airports</li>
+              <li>SQL query rewrites and targeted indexing for <strong>50% response time improvement</strong></li>
+              <li><strong>AWS CloudWatch</strong> and structured Linux logging for production observability</li>
+              <li>Shell-scripted automated deployment across all airport environment configurations</li>
+            </ul>
+          </template>
         </div>
 
       </div>
@@ -872,6 +957,27 @@
 
   <div class="divider"></div>
 
+  <!-- VOLUNTEERING -->
+  <!-- TODO: Replace the placeholder card below with your real volunteering experience. -->
+  <section id="volunteering">
+    <div class="section-inner">
+      <div class="section-label">Community</div>
+      <h2 class="section-title">Volunteering &amp; <em>Community Impact</em></h2>
+      <p class="section-sub">Beyond the day job — community, mentorship, and open-source involvement.</p>
+
+      <div class="volunteer-grid">
+        <div class="volunteer-placeholder reveal">
+          <span class="vp-tag">Add your details</span>
+          <h3>Your Volunteer Role</h3>
+          <p>Organization Name · City · Dates</p>
+          <p>Describe your contribution and impact here — for example, mentoring students, organizing community events, contributing to open-source projects, or volunteer teaching. Replace this placeholder in <code>index.html</code> (search for the <code>#volunteering</code> section) once you have the details ready.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
   <!-- CONTACT -->
   <section id="contact">
     <div class="contact-inner">
@@ -898,13 +1004,13 @@
             <div class="clink-icon">📞</div>
             <div class="clink-text"><strong>Phone</strong><span>(905) 341-4610</span></div>
           </a>
-          <a href="https://linkedin.com/in/nujithaw" target="_blank" rel="noopener" class="contact-link">
+          <a href="https://www.linkedin.com/in/nujitha/" target="_blank" rel="noopener" class="contact-link">
             <div class="clink-icon">💼</div>
-            <div class="clink-text"><strong>LinkedIn</strong><span>linkedin.com/in/nujithaw</span></div>
+            <div class="clink-text"><strong>LinkedIn</strong><span>linkedin.com/in/nujitha</span></div>
           </a>
-          <a href="https://github.com/nujithaw" target="_blank" rel="noopener" class="contact-link">
+          <a href="https://github.com/nujitha99" target="_blank" rel="noopener" class="contact-link">
             <div class="clink-icon">🐙</div>
-            <div class="clink-text"><strong>GitHub</strong><span>github.com/nujithaw</span></div>
+            <div class="clink-text"><strong>GitHub</strong><span>github.com/nujitha99</span></div>
           </a>
           <div class="contact-link" style="cursor:default;">
             <div class="clink-icon">📍</div>
@@ -920,6 +1026,24 @@
     <p>Toronto, Ontario, Canada</p>
   </footer>
 
+  <!-- PROJECT DETAIL MODAL -->
+  <div class="project-modal-overlay" id="projectModalOverlay">
+    <div class="project-modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="modal-close" id="modalClose" type="button" aria-label="Close case study">&times;</button>
+      <div class="project-header" id="modalHeader">
+        <div class="phbg"></div>
+        <div class="project-cat" id="modalCat"></div>
+        <div class="project-title-h" id="modalTitle"></div>
+      </div>
+      <div class="project-body" id="modalBody">
+        <div class="modal-media" id="modalMedia"></div>
+        <div class="project-metrics" id="modalMetrics"></div>
+        <div id="modalDetail"></div>
+        <div class="modal-links" id="modalLinks"></div>
+      </div>
+    </div>
+  </div>
+
   <script>
     const bar = document.getElementById('progressBar');
     const nav = document.getElementById('mainNav');
@@ -934,6 +1058,122 @@
     }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
 
     document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+    // ── Animated hero stat counters ──
+    function animateCount(el) {
+      const target = parseFloat(el.dataset.countTo);
+      const suffix = el.dataset.suffix || '';
+      const duration = 1200;
+      const start = performance.now();
+      el.textContent = '0' + suffix;
+      function tick(now) {
+        const progress = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        el.textContent = Math.round(target * eased) + suffix;
+        if (progress < 1) requestAnimationFrame(tick);
+        else el.textContent = target + suffix;
+      }
+      requestAnimationFrame(tick);
+    }
+    const counterIO = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          animateCount(entry.target);
+          counterIO.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.4 });
+    document.querySelectorAll('[data-count-to]').forEach(el => counterIO.observe(el));
+
+    // ── Project filters ──
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const projectCards = document.querySelectorAll('.project-card');
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.dataset.filter;
+        projectCards.forEach(card => {
+          const match = filter === 'all' || card.dataset.category === filter;
+          if (match) {
+            card.style.display = '';
+            requestAnimationFrame(() => card.classList.remove('filtered-out'));
+          } else {
+            card.classList.add('filtered-out');
+            setTimeout(() => { if (card.classList.contains('filtered-out')) card.style.display = 'none'; }, 300);
+          }
+        });
+      });
+    });
+
+    // ── Project detail modal ──
+    const modalOverlay = document.getElementById('projectModalOverlay');
+    const modalHeader = document.getElementById('modalHeader');
+    const modalCat = document.getElementById('modalCat');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalMedia = document.getElementById('modalMedia');
+    const modalMetrics = document.getElementById('modalMetrics');
+    const modalDetail = document.getElementById('modalDetail');
+    const modalLinks = document.getElementById('modalLinks');
+    const modalClose = document.getElementById('modalClose');
+    const headerVariants = ['teal', 'warm', 'slate', 'navy'];
+    let lastFocused = null;
+
+    function openProjectModal(card) {
+      const header = card.querySelector('.project-header');
+      const variant = headerVariants.find(v => header.classList.contains(v));
+      modalHeader.className = 'project-header' + (variant ? ' ' + variant : '');
+      modalCat.textContent = header.querySelector('.project-cat').textContent;
+      modalTitle.textContent = header.querySelector('.project-title-h').textContent;
+
+      const metrics = card.querySelector('.project-metrics');
+      modalMetrics.innerHTML = metrics ? metrics.innerHTML : '';
+
+      const tpl = card.querySelector('.project-detail-tpl');
+      modalDetail.innerHTML = '';
+      if (tpl) modalDetail.appendChild(tpl.content.cloneNode(true));
+
+      const img = card.dataset.image;
+      modalMedia.innerHTML = img ? `<img src="${img}" alt="${modalTitle.textContent} screenshot">` : '';
+
+      modalLinks.innerHTML = '';
+      [
+        { key: 'github', label: 'View Code', icon: '🐙' },
+        { key: 'demo', label: 'Live Demo', icon: '🔗' },
+        { key: 'paper', label: 'Read Paper', icon: '📄' }
+      ].forEach(l => {
+        const url = card.dataset[l.key];
+        if (url) {
+          const a = document.createElement('a');
+          a.href = url;
+          a.target = '_blank';
+          a.rel = 'noopener';
+          a.className = 'btn-ghost modal-link-btn';
+          a.textContent = `${l.icon} ${l.label}`;
+          modalLinks.appendChild(a);
+        }
+      });
+
+      lastFocused = document.activeElement;
+      modalOverlay.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      modalClose.focus();
+    }
+
+    function closeProjectModal() {
+      modalOverlay.classList.remove('open');
+      document.body.style.overflow = '';
+      if (lastFocused) lastFocused.focus();
+    }
+
+    document.querySelectorAll('.project-more-btn').forEach(btn => {
+      btn.addEventListener('click', () => openProjectModal(btn.closest('.project-card')));
+    });
+    modalClose.addEventListener('click', closeProjectModal);
+    modalOverlay.addEventListener('click', e => { if (e.target === modalOverlay) closeProjectModal(); });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && modalOverlay.classList.contains('open')) closeProjectModal();
+    });
   </script>
 </body>
 </html>
